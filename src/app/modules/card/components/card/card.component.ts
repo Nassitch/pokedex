@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CardService } from '../../shared/services/card.service';
 import { Observable, tap } from 'rxjs';
+import { PokemonType } from '../../models/pokemon.type';
 
 @Component({
   selector: 'app-card',
@@ -10,9 +11,9 @@ import { Observable, tap } from 'rxjs';
 export class CardComponent implements OnInit {
   private cardService = inject(CardService);
 
-  pokemonList!: any[];
+  pokemonList!: PokemonType[];
 
-  pokemon$!: Observable<any>;
+  pokemon$!: Observable<PokemonType[]>;
 
   ngOnInit() {
     // this.cardService
