@@ -1,19 +1,21 @@
-<div>
-  <div *ngIf="pokemon$ | async as pokemonList">
-    <div *ngFor="let pokemon of pokemonList">
-      <h3>{{ pokemon.name }}</h3>
-      <p>XP: {{ pokemon.base_experience }}</p>
-      <p>Height: {{ pokemon.height }}</p>
-      <img [src]="pokemon.sprites.front_default" />
+<div class="pokemon-card">
 
-      <div *ngFor="let type of pokemon.types" class="types">
-        <p class="{{ type.type.name | typeColor }}">{{ type.type.name }}</p>
-      </div>
-      <div *ngFor="let stat of pokemon.stats">
-        <p>{{ stat.base_stat }}</p>
-        <p>{{ stat.stat.name }}</p>
-      </div>
+  <!-- <img [src]="pokemon.types[0].type.name | typeCardColor" /> -->
+  <div [ngStyle]="{'background': 'url(' + (pokemon.types[0].type.name | typeCardColor) + ')', 'background-size': 'cover', 'background-position': 'center' }">
+    <div class="title-xp">
+      <h3 class="title">{{ pokemon.name }}</h3>
+      <p class="xp">XP: {{ pokemon.base_experience }}</p>
     </div>
-  </div>
+    <p>Height: {{ pokemon.height }}</p>
+    <img class="img-pokemon" [src]="pokemon.sprites.other['official-artwork'].front_default" />
+    
+    <div *ngFor="let type of pokemon.types" class="types">
+      <p class="{{ type.type.name | typeColor }}">{{ type.type.name }}</p>
+    </div>
+    <div *ngFor="let stat of pokemon.stats">
+      <p>{{ stat.base_stat }}</p>
+      <p>{{ stat.stat.name }}</p>
+    </div>
+  <!-- </div> -->
   
 </div>
