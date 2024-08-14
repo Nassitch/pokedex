@@ -6,6 +6,7 @@ import {
   pokemonAttribut,
   PokemonListType,
 } from '../../models/pokemon-list.type';
+import { Ability } from '../../models/ability.type';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +41,10 @@ export class CardService {
           }));
         })
       );
+  }
+
+  getAbilitiesList$(url: string): Observable<Ability> {
+    return this.http.get<Ability>(url);
   }
 
   nextPage(): void {

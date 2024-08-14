@@ -1,32 +1,51 @@
 <div class="pokemon-card">
-  <!-- <img [src]="pokemon.types[0].type.name | typeCardColor" /> -->
-  <div
-    [ngStyle]="{
-      background: 'url(' + (pokemon.types[0].type.name | typeCardColor) + ')',
-      backgroundSize: '300px 400px',
-      backgroundRepeat: 'no-repeat'
-    }"
-  >
-    <div class="title-xp">
-      <h3 class="title">{{ pokemon.name }}</h3>
-      <p class="xp">XP: {{ pokemon.base_experience }}</p>
+  <img [src]="pokemon.types[0].type.name | typeCardColor" />
+
+  <div class="card-content">
+    <div class="header-card">
+      <h3>{{ pokemon.name | titlecase }}</h3>
+      <h4>
+        XP <span>{{ pokemon.base_experience }}</span>
+      </h4>
     </div>
-    <div class="img-container">
+
+    <div class="img-card">
       <img
         class="img-pokemon"
         [src]="pokemon.sprites.other['official-artwork'].front_default"
       />
     </div>
-    <p class="height">Height: {{ pokemon.height }}</p>
-    <div class="types-container">
-      <div *ngFor="let type of pokemon.types" class="types">
-        <p class="{{ type.type.name | typeColor }}">{{ type.type.name }}</p>
+
+    <div class="description-card">
+      <div class="types-card">
+        <div *ngFor="let type of pokemon.types" class="types">
+          <p class="{{ type.type.name | typeColor }}">{{ type.type.name }}</p>
+        </div>
       </div>
-    </div>
-    <div class="stat-container">
-      <div class="stat" *ngFor="let stat of pokemon.stats">
-        <p class="stat-content">{{ stat.stat.name }}</p>
-        <p class="stat-content">{{ stat.base_stat }}</p>
+
+      <div class="size">
+        <p class="titled">Size:</p>
+        <p>{{ pokemon.height }}H<span></span></p>
+        <p>{{ pokemon.weight }}W</p>
+      </div>
+
+      <div class="ability-card">
+        <p class="titled">Abilities</p>
+        <div *ngIf="abilityList$ | async as abilityList">
+          <!-- <div *ngFor="let ability of abilityList"> -->
+          <p class="ability-name">{{ abilityList[0].name }}</p>
+          <p class="ability-description">
+            {{ abilityList[0].effect_entries[0].effect }}
+          </p>
+          <!-- </div> -->
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div *ngFor="let stat of pokemon.stats">
+          <p>{{ stat.stat.name }}</p>
+          <p>{{ stat.base_stat }}</p>
+        </div>
       </div>
     </div>
   </div>
