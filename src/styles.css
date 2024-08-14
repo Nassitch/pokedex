@@ -1,1 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "gill_sans";
+  src: url("./assets/fonts/gill_sans_bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "gill_sans";
+  src: url("./assets/fonts/gill_sans_bold_italic.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "gill_sans";
+  src: url("./assets/fonts/gill_sans_medium.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "gill_sans";
+  src: url("./assets/fonts/gill_sans_medium_italic.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* @font-face {
+    font-family: '3a1d_font';
+    src: url('./assets/fonts/3a1d_font_regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  } */
+
+@font-face {
+  font-family: "gill_sans";
+  src: url("./assets/fonts/gill_sans_light.otf") format("opentype");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "gill_sans";
+  src: url("./assets/fonts/gill_sans_light_italic.otf") format("opentype");
+  font-weight: lighter;
+  font-style: italic;
+}
+
+* {
+    font-family: "gill_sans";
+    margin: 0;
+    padding: 0;
+  }
+
+.red-lighten-1 {
+  background-color: #ef5350;
+}
+
+.blue-lighten-1 {
+  background-color: #42a5f5;
+}
+
+.green-lighten-1 {
+  background-color: #66bb6a;
+}
+
+.brown-lighten-1 {
+  background-color: #8d6e63;
+}
+
+.blue-lighten-3 {
+  background-color: #42a5f5;
+}
+
+.grey-lighten-3 {
+  background-color: #bdbdbd;
+}
+
+.deep-purple-accent-1 {
+  background-color: #b388ff;
+}
+
+.pink-lighten-4 {
+  background-color: #f8bbd0;
+}
+
+.deep-purple-darken-2 {
+  background-color: #512da8;
+}
+
+.lime-accent-1 {
+  color: #000000;
+  background-color: #f4ff81;
+}
+
+.deep-orange {
+  background-color: #ff5722;
+}
+
+.teal {
+  background-color: #009688;
+}
+
+.grey {
+  background-color: #9e9e9e;
+}
