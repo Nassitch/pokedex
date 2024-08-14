@@ -1,58 +1,40 @@
+.pokemon-card {
+  background-repeat: no-repeat;
+  background-size: 10%;
+  gap: 20px;
+  /* height: 844px; */
+  width: 644px;
+  border: 2px solid teal;
+}
+
+/* .card {
+  width: 30%;
+} */
+
+.pokemon-card > img {
+  position: relative;
+  height: auto;
+  width: 250px;
+}
+
+.title-xp {
+  display: flex;
+  justify-content: space-around;
+}
+
+.img-pokemon {
+  
+  width: 50%;
+}
+
 .types {
   height: 20px;
   width: 60px;
   color: #fff;
 }
 
-.red-lighten-1 {
-  background-color: #ef5350;
-}
 
-.blue-lighten-1 {
-  background-color: #42a5f5;
-}
 
-.green-lighten-1 {
-  background-color: #66bb6a;
-}
-
-.brown-lighten-1 {
-  background-color: #8d6e63;
-}
-
-.blue-lighten-3 {
-  background-color: #42a5f5;
-}
-
-.grey-lighten-3 {
-  background-color: #bdbdbd;
-}
-
-.deep-purple-accent-1 {
-  background-color: #b388ff;
-}
-
-.pink-lighten-4 {
-  background-color: #f8bbd0;
-}
-
-.deep-purple-darken-2 {
-  background-color: #512da8;
-}
-
-.lime-accent-1 {
-    color: #000000;
-  background-color: #f4ff81;
-}
-
-.deep-orange {
-  background-color: #ff5722;
-}
-
-.teal {
-  background-color: #009688;
-}
-
-.grey {
-  background-color: #9e9e9e;
+.title {
+  text-align: center;
 }

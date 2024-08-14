@@ -1,0 +1,7 @@
+<div class="list" *ngIf="pokemonList$ | async as pokemonList">
+  <div *ngFor="let pokemon of pokemonList">
+    <app-card [pokemon]="pokemon" />
+  </div>
+
+  <button (click)="this.cardService.nextPage()">Suivant</button>
+</div>

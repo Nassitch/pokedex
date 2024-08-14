@@ -74,7 +74,7 @@ type Sprites = {
 type Other = {
   dream_world: DreamWorld;
   home: Home;
-  official_artwork: OfficialArtwork;
+  'official-artwork': OfficialArtwork;
   showdown: ShowDown;
 };
 
