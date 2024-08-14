@@ -2,5 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    
+  }
+.btn {
+  display: flex;
+  justify-content: center;
+
+}
+button {
+  padding: 20px 30px;
 }

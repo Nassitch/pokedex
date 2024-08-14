@@ -2,6 +2,7 @@
   <div *ngFor="let pokemon of pokemonList">
     <app-card [pokemon]="pokemon" />
   </div>
-
+</div>
+<div class="btn">
   <button (click)="this.cardService.nextPage()">Suivant</button>
 </div>
