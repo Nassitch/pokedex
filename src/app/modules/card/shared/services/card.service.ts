@@ -7,6 +7,7 @@ import {
   PokemonListType,
 } from '../../models/pokemon-list.type';
 import { Ability } from '../../models/ability.type';
+import { environment } from 'src/app/environment/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class CardService {
 
   private http = inject(HttpClient);
 
-  private readonly _BASE_URL: string = 'https://pokeapi.co/api/v2/';
+  private readonly _BASE_URL: string = environment._BASE_URL;
 
   private limit: number = 12;
   private offset: number = 0;
