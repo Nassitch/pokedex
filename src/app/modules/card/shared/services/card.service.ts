@@ -48,8 +48,6 @@ export class CardService {
     return this.http.get<Ability>(url);
   }
 
-
-
   nextPage(): void {
     this.limit += 12;
     this.offset += 12;

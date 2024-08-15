@@ -1,0 +1,117 @@
+
+section {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #42a5f5;
+}
+
+section > #pokemon-details {
+    width: 700px;
+    background-color: var(--second-color);
+    padding: 20px 50px;
+    border-radius: 20px;
+}
+
+section >#pokemon-details > #head-detail-info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+section >#pokemon-details > #head-detail-info > h1, h2 {
+    font-size: 34px;
+}
+
+section > #pokemon-details > #container-details {
+    display: flex;
+    width: 100%;
+}
+
+section > #pokemon-details > #container-details > #left-block {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+section > #pokemon-details > #container-details > #left-block > img {
+    width: 100%;
+}
+
+section > #pokemon-details > #container-details > #right-block {
+    width: 50%;
+}
+
+section > #pokemon-details > #container-details > #right-block > .titled {
+    font-size: 21px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+section > #pokemon-details > #container-details > #right-block > #ability-description {
+    margin-block: 20px;
+}
+
+section > #pokemon-details > #container-details > #right-block > #size-description {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+section > #pokemon-details > #container-details > #right-block > #size-description > p {
+    font-size: 18px;
+}
+
+section > #pokemon-details > #container-details > #right-block > #type-description {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+
+section > #pokemon-details > #container-details > #right-block > #type-description > .types > p {
+    font-size: 18px;
+    padding: 3px 10px;
+    border-radius: 10px;
+}
+
+section > #pokemon-details > #container-details > #right-block > #stats-description  {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    padding: 10px 10px;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    background-color: #42a5f5;
+    border-radius: 10px;
+}
+
+section > #pokemon-details > #container-details > #right-block > #stats-description > div {
+    text-align: center;
+    color: var(--second-color);
+}
+
+section > #pokemon-details > #container-details > #right-block > #stats-description > div > p:nth-child(2) {
+    font-size: 19px;
+}
+
+section > .error-msg {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+section > .error-msg > h2 {
+    font-size: 44px;
+    font-weight: bold;
+}
+
+section > .error-msg > h3 {
+    font-size: 31px;
+    font-weight: normal;
+    font-style: italic;
+}
