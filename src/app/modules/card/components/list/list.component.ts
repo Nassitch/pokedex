@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CardService } from '../../shared/services/card.service';
 import { PokemonType } from '../../models/pokemon.type';
 import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -11,28 +12,17 @@ import { Observable, tap } from 'rxjs';
 export class ListComponent {
 
   protected cardService = inject(CardService);
+  protected router = inject(Router);
 
   pokemonList$!: Observable<PokemonType[] | null>;
 
   ngOnInit() {
-    // this.cardService
-    //   .getPokemonList$()
-    //   .pipe(
-    //     tap((res) => {
-    //       console.log(res);
-    //       this.pokemonList = res;
-    //     })
-    //   )
-    //   .subscribe();
-
-    // this.pokemonList$ = this.cardService.getPokemonList$().pipe(
-    //   tap((res) => {
-    //     console.log(res)
-    //   })
-    // );
-
     this.pokemonList$ = this.cardService._pokemonDetails$;
 
     this.cardService.getPokemonList$().subscribe()
+  }
+
+  goSearch() {
+    return this.router.navigate(['/search'])
   }
 }

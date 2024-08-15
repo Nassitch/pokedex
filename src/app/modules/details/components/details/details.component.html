@@ -1,0 +1,50 @@
+<div *ngIf="pokemon$ | async as pokemon" class="row">
+    <div class="col s12 m8 offset-m2">
+      <h2 class="header center">{{ pokemon.name }}</h2>
+      <div class="card horizontal hoverable">
+        <div class="card-image">
+          <img [src]="pokemon.sprites.other['official-artwork'].front_default" />
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <table class="bordered striped">
+              <tbody>
+                <tr>
+                  <td>Nom</td>
+                  <td>
+                    <strong>{{ pokemon.name }}</strong>
+                  </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                  <td>Dégâts</td>
+                  <td>
+                    <div *ngFor="let stat of pokemon.stats">
+          <p>{{ stat.stat.name }}</p>
+          <p>{{ stat.base_stat }}</p>
+        </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Types</td>
+                  <td>
+                    <span
+                      *ngFor="let type of pokemon.types"
+                      ><p class="{{ type.type.name | typeColor }}">{{ type.type.name }}</p></span
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- <div class="card-action">
+            <a (click)="goBack()">Retour</a>
+            <a (click)="editPokemon(pokemon)">Editer</a>
+            <a (click)="deletePokemon(pokemon)">Suppirmer</a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
