@@ -1,4 +1,5 @@
-<div class="pokemon-card">
+
+<div class="pokemon-card" (click)="seeDetails(pokemon.id)">
   <img [src]="pokemon.types[0].type.name | typeCardColor" />
 
   <div class="card-content">

@@ -3,6 +3,7 @@ import { PokemonType } from '../../models/pokemon.type';
 import { CardService } from '../../shared/services/card.service';
 import { forkJoin, Observable } from 'rxjs';
 import { Ability } from '../../models/ability.type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -13,6 +14,7 @@ export class CardComponent implements OnInit {
   @Input() public pokemon!: PokemonType;
 
   private cardService = inject(CardService);
+  private router = inject(Router);
 
   abilityList$!: Observable<Ability[]>;
 
@@ -24,4 +26,9 @@ export class CardComponent implements OnInit {
 
     this.abilityList$ = forkJoin(abilityObservables);
   }
+
+  seeDetails(id: number): void {
+    this.router.navigate([`/details/${id}`])
+  }
+  
 }
