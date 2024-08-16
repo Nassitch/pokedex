@@ -30,5 +30,7 @@ export class CardComponent implements OnInit {
   seeDetails(id: number): void {
     this.router.navigate([`/details/${id}`])
   }
-  
+
+
+
 }

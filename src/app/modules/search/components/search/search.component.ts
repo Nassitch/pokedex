@@ -13,15 +13,15 @@ export class SearchComponent implements OnDestroy {
 
   private searchService = inject(SearchService);
   private router = inject(Router);
-  
+
   searchTerms = new BehaviorSubject<any>(null);
-  
+
   pokemonCardList$!: Observable<PokemonType[]>;
 
   private pokemonSub: Subscription = new Subscription();
 
   searchPokemon(name: string): Observable<PokemonType> {
-    return this.searchService.getPokemonByName$(name).pipe(
+    return this.searchService.getPokemonByName$(name.toLowerCase()).pipe(
       debounceTime(1000),
       tap(result => this.searchTerms.next(result))
     )
