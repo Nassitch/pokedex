@@ -37,8 +37,9 @@
         
         <h4 class="titled">Stat:</h4>
         <div id="stats-description">
+          <p>XP<br/>{{ pokemon.base_experience }}</p>
           <div *ngFor="let stat of pokemon.stats">
-            <p>{{ stat.stat.name }}</p>
+            <p>{{ stat.stat.name | titlecase }}</p>
             <p>{{ stat.base_stat }}</p>
           </div>
         </div>

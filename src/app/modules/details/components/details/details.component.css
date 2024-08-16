@@ -90,7 +90,7 @@ section > #pokemon-details > #container-details > #right-block > #stats-descript
     border-radius: 10px;
 }
 
-section > #pokemon-details > #container-details > #right-block > #stats-description > div {
+section > #pokemon-details > #container-details > #right-block > #stats-description {
     text-align: center;
     color: var(--second-color);
 }

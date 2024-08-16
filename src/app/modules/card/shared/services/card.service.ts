@@ -1,18 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, forkJoin, Observable, switchMap, tap } from 'rxjs';
+import { inject, Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, forkJoin, Observable, Subscription, switchMap, tap } from 'rxjs';
 import { PokemonType } from '../../models/pokemon.type';
-import {
-  pokemonAttribut,
-  PokemonListType,
-} from '../../models/pokemon-list.type';
+import { pokemonAttribut, PokemonListType } from '../../models/pokemon-list.type';
 import { Ability } from '../../models/ability.type';
 import { environment } from 'src/app/environment/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CardService {
+export class CardService implements OnDestroy {
   public _pokemonDetails$: BehaviorSubject<PokemonType[] | null> = new BehaviorSubject<PokemonType[] | null>(null);
 
   private http = inject(HttpClient);
@@ -21,6 +18,8 @@ export class CardService {
 
   private limit: number = 12;
   private offset: number = 0;
+
+  private pokemonSub: Subscription = new Subscription();
 
   getPokemonList$(): Observable<PokemonType[]> {
     return this.http
@@ -51,7 +50,10 @@ export class CardService {
   nextPage(): void {
     this.limit += 12;
     this.offset += 12;
-    this.getPokemonList$().subscribe();
+    this.pokemonSub = this.getPokemonList$().subscribe();
   }
   
+  ngOnDestroy(): void {
+    this.pokemonSub.unsubscribe();
+  }
 }
