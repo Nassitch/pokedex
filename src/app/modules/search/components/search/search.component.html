@@ -14,11 +14,14 @@
   </div>
 </div>
 <div class="collection">
-    <ng-container *ngIf="searchTerms | async as searchTerm; else nothing">
-      <app-card [pokemon]="searchTerm" onclick="seeDetails(searchTerm.id)" />
-    </ng-container>
-    
-    <ng-template #nothing>
-      <p> Rien n'est rechercher. </p>
-    </ng-template>
+  <ng-container *ngIf="searchTerms | async as searchTerm; else nothing">
+    <app-card [pokemon]="searchTerm" onclick="seeDetails(searchTerm.id)" />
+  </ng-container>
+
+  <ng-template #nothing>
+    <p>Rien n'est rechercher.</p>
+  </ng-template>
+  <div class="card-action center">
+    <a (click)="goBack()">Retour</a>
+  </div>
 </div>
