@@ -60,6 +60,13 @@
   --dark-grey: #d9d9d9;
 }
 
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 20px 40px;
+}
+
 .red-lighten-1 {
   background-color: #ef5350;
 }

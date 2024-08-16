@@ -1,4 +1,3 @@
-
 <div class="pokemon-card" (click)="seeDetails(pokemon.id)">
   <img [src]="pokemon.types[0].type.name | typeCardColor" />
 
@@ -6,7 +5,7 @@
     <div class="header-card">
       <h3>{{ pokemon.name | titlecase }}</h3>
       <h4>
-        XP <span>{{ pokemon.base_experience }}</span>
+        HP <span>{{ pokemon.stats[0].base_stat }}</span>
       </h4>
     </div>
 
@@ -19,34 +18,30 @@
     </div>
 
     <div class="description-card">
-      <div class="types-card">
-        <div *ngFor="let type of pokemon.types" class="types">
-          <p class="{{ type.type.name | typeColor }}">{{ type.type.name }}</p>
-        </div>
-      </div>
-
-      <div class="size">
-        <p class="titled">Size:</p>
-        <p>{{ pokemon.height }}H<span></span></p>
-        <p>{{ pokemon.weight }}W</p>
-      </div>
-
       <div class="ability-card">
-        <p class="titled">Abilities</p>
+        <p class="titled">Ability :</p>
         <div *ngIf="abilityList$ | async as abilityList">
-          <!-- <div *ngFor="let ability of abilityList"> -->
           <p class="ability-name">{{ abilityList[0].name }}</p>
           <p class="ability-description">
             {{ abilityList[0].effect_entries[0].effect }}
           </p>
-          <!-- </div> -->
         </div>
       </div>
 
-      <div class="stat-card">
-        <div *ngFor="let stat of pokemon.stats">
-          <p>{{ stat.stat.name }}</p>
-          <p>{{ stat.base_stat }}</p>
+      <div class="attack-card">
+        <div>
+          <img
+            *ngFor="let typeIcon of pokemon.types | typeIcon"
+            [src]="typeIcon"
+            alt="{{ typeIcon }}"
+            class="type-icon"
+          />
+        </div>
+        <div class="attack-name">
+          <p>{{ pokemon.stats[1].stat.name | titlecase }}</p>
+        </div>
+        <div class="attack-indice">
+          <p>{{ pokemon.stats[1].base_stat }}</p>
         </div>
       </div>
     </div>

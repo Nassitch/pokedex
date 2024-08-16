@@ -1,4 +1,6 @@
 <section>
+  <button [routerLink]="['/']" class="back-btn">Back</button>
+
 <ng-container *ngIf="pokemon$ | async as pokemon; else nothing">
   <article id="pokemon-details">
 
