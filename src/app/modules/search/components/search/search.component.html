@@ -1,27 +1,21 @@
-<div class="row">
-  <div class="col s12 m6 offset-m3">
-    <div class="card">
-      <div class="card-content">
-        <div class="input-field">
-          <input
-            #searchBox
-            (keyup)="search(searchBox.value)"
-            placeholder="Rechercher un pokémon"
-          />
-        </div>
-      </div>
-    </div>
+<section>
+  <button [routerLink]="['/']" class="back-btn">Back</button>
+  
+  <div id="input-field">
+    <input
+      #searchBox
+      (keyup)="search(searchBox.value)"
+      placeholder="Search Pokemon ..."
+    />
   </div>
-</div>
-<div class="collection">
-  <ng-container *ngIf="searchTerms | async as searchTerm; else nothing">
-    <app-card [pokemon]="searchTerm" onclick="seeDetails(searchTerm.id)" />
-  </ng-container>
 
-  <ng-template #nothing>
-    <p>Rien n'est rechercher.</p>
-  </ng-template>
-  <div class="card-action center">
-    <a (click)="goBack()">Retour</a>
+  <div id="result">
+    <ng-container *ngIf="searchTerms | async as searchTerm; else nothing">
+      <app-card [pokemon]="searchTerm" onclick="seeDetails(searchTerm.id)" />
+    </ng-container>
+
+    <ng-template #nothing>
+      <p>Rien n'est rechercher.</p>
+    </ng-template>
   </div>
-</div>
+</section>

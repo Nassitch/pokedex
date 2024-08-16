@@ -65,34 +65,9 @@
 }
 
 .titled {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: bold;
   font-style: italic;
-}
-
-.pokemon-card > .card-content > .description-card > .types-card {
-  height: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-
-.pokemon-card > .card-content > .description-card > .types-card > div > p {
-  color: white;
-  padding: 1px 6px;
-  border-radius: 10px;
-}
-
-.pokemon-card > .card-content > .description-card > .size {
-  height: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.pokemon-card > .card-content > .description-card > .size > p {
-  font-size: 16px;
-  font-weight: bold;
 }
 
 .pokemon-card > .card-content > .description-card > .ability-card {
@@ -104,32 +79,51 @@
   > .description-card
   > .ability-card
   > div
+  > .ability-name {
+    text-align: center;
+    margin-block: -22px 10px;
+  font-size: 18px;
+}
+
+.pokemon-card
+  > .card-content
+  > .description-card
+  > .ability-card
+  > div
   > .ability-description {
-  height: 31px;
+  height: 62px;
   width: 265px;
   display: block;
-  line-height: 10px;
+  line-height: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 9px;
-}
-
-.pokemon-card > .card-content > .description-card > .stat-card {
-  height: 90px;
-  max-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  text-align: center;
-}
-
-.pokemon-card > .card-content > .description-card > .stat-card > div {
-  max-height: 10px;
-}
-
-.pokemon-card > .card-content > .description-card > .stat-card > div > p {
   font-size: 14px;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card {
+  display: flex;
+  width: 100%;
+  margin-top: 40px;
+  justify-content: space-between;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card > div {
+  display: flex;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card > div > img {
+  min-width: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card > .attack-name > p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card > .attack-indice > p {
+  font-size: 20px;
 }
 
 .pokemon-card
