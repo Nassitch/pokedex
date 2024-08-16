@@ -13,9 +13,9 @@ export class SearchComponent {
 
   private searchService = inject(SearchService);
   private router = inject(Router);
-  
+
   searchTerms = new BehaviorSubject<any>(null);
-  
+
   pokemonCardList$!: Observable<PokemonType[]>;
 
   searchPokemon(name: string): Observable<PokemonType> {
@@ -33,5 +33,9 @@ export class SearchComponent {
 
   seeDetails(id: number): void {
     this.router.navigate([`/details/${id}`])
+  }
+
+  goBack(): void {
+    this.router.navigate(['/'])
   }
 }
