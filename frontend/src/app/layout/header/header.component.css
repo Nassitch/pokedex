@@ -1,0 +1,22 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+    backdrop-filter: blur(25px);
+    padding-inline: 20px;
+    z-index: 15;
+}
+
+nav > div > button {
+    width: 65px;
+    border: none;
+    background: transparent;
+}
+
+nav > div > button > img {
+    width: 100%;
+}

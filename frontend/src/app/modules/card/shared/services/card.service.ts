@@ -18,6 +18,7 @@ export class CardService implements OnDestroy {
 
   private limit: number = 12;
   private offset: number = 0;
+  public pageNbr: number = 1;
 
   private pokemonSub: Subscription = new Subscription();
 
@@ -47,9 +48,19 @@ export class CardService implements OnDestroy {
     return this.http.get<Ability>(url);
   }
 
+  previousPage(): void {
+    if (this.offset !== 0) {
+      this.limit -= 12;
+      this.offset -= 12;
+      this.pageNbr -= 1;
+      this.pokemonSub = this.getPokemonList$().subscribe();
+    }
+  }
+  
   nextPage(): void {
     this.limit += 12;
     this.offset += 12;
+    this.pageNbr += 1;
     this.pokemonSub = this.getPokemonList$().subscribe();
   }
   

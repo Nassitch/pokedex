@@ -64,8 +64,17 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  padding: 20px 40px;
   z-index: 2;
+}
+
+.action-btn {
+  width: 150px;
+  border: none;
+  background: transparent;
+}
+
+.action-btn > img {
+  width: 100%;
 }
 
 .red-lighten-1 {

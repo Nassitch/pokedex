@@ -3,6 +3,7 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 60px;
 }
 
 section > #input-field {
@@ -26,4 +27,9 @@ section > #result {
     height: 80vh;
     display: flex;
     align-items: center;
+}
+
+section > div > #noting-msg {
+    color: var(--second-color);
+    font-size: 33px;
 }
