@@ -3,21 +3,26 @@ import { CommonModule } from '@angular/common';
 
 import { CardRoutingModule } from './card-routing.module';
 import { CardComponent } from './components/card/card.component';
-import { TypeColorPipe } from './shared/pipes/type-color.pipe';
 import { ListComponent } from './components/list/list.component';
 import { TypeCardColorPipe } from './shared/pipes/type-card-color.pipe';
+import { DetailsModule } from '../details/details.module';
+import { TypeIconPipe } from './shared/pipes/type-icon.pipe';
 
 
 @NgModule({
   declarations: [
     CardComponent,
-    TypeColorPipe,
     ListComponent,
-    TypeCardColorPipe
+    TypeCardColorPipe,
+    TypeIconPipe,
   ],
   imports: [
     CommonModule,
-    CardRoutingModule
+    CardRoutingModule,
+    DetailsModule,
+  ],
+  exports: [
+    CardComponent
   ]
 })
 export class CardModule { }

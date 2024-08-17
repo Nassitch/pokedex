@@ -1,0 +1,21 @@
+<section>
+  <button [routerLink]="['/']" class="back-btn">Back</button>
+  
+  <div id="input-field">
+    <input
+      #searchBox
+      (keyup)="search(searchBox.value)"
+      placeholder="Search Pokemon ..."
+    />
+  </div>
+
+  <div id="result">
+    <ng-container *ngIf="searchTerms | async as searchTerm; else nothing">
+      <app-card [pokemon]="searchTerm" onclick="seeDetails(searchTerm.id)" />
+    </ng-container>
+
+    <ng-template #nothing>
+      <p>Rien n'est rechercher.</p>
+    </ng-template>
+  </div>
+</section>

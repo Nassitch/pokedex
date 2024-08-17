@@ -1,40 +1,136 @@
 .pokemon-card {
-  background-repeat: no-repeat;
-  background-size: 10%;
-  gap: 20px;
-  /* height: 844px; */
-  width: 644px;
-  border: 2px solid teal;
+  position: relative;
+  height: 420px;
+  width: 300px;
+  margin: 10px 20px;
 }
-
-/* .card {
-  width: 30%;
-} */
 
 .pokemon-card > img {
-  position: relative;
-  height: auto;
-  width: 250px;
+  width: 100%;
+  border-radius: 15px;
+  z-index: -10;
 }
 
-.title-xp {
+.pokemon-card > .card-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.pokemon-card > .card-content > .header-card {
+  max-height: 42px;
+  max-width: 100%;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 40px 0px 60px;
 }
 
-.img-pokemon {
-  
-  width: 50%;
+.pokemon-card > .card-content > .header-card > h3 {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.types {
-  height: 20px;
-  width: 60px;
-  color: #fff;
+.pokemon-card > .card-content > .header-card > h4 {
+  font-size: 9px;
+  font-weight: bold;
 }
 
+.pokemon-card > .card-content > .header-card > h4 > span {
+  font-size: 24px;
+  font-weight: bold;
+}
 
+.pokemon-card > .card-content > .img-card {
+  height: 168px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
 
-.title {
-  text-align: center;
+.pokemon-card > .card-content > .img-card > img {
+  max-height: 165px;
+}
+
+.pokemon-card > .card-content > .description-card {
+  height: 200px;
+  max-width: 100%;
+  padding: 10px 20px 0px 20px;
+}
+
+.titled {
+  font-size: 19px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.pokemon-card > .card-content > .description-card > .ability-card {
+  height: 70px;
+}
+
+.pokemon-card
+  > .card-content
+  > .description-card
+  > .ability-card
+  > div
+  > .ability-name {
+    text-align: center;
+    margin-block: -22px 10px;
+  font-size: 18px;
+}
+
+.pokemon-card
+  > .card-content
+  > .description-card
+  > .ability-card
+  > div
+  > .ability-description {
+  height: 62px;
+  width: 265px;
+  display: block;
+  line-height: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card {
+  display: flex;
+  width: 100%;
+  margin-top: 40px;
+  justify-content: space-between;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card > div {
+  display: flex;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card > div > img {
+  min-width: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card > .attack-name > p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pokemon-card > .card-content > .description-card > .attack-card > .attack-indice > p {
+  font-size: 20px;
+}
+
+.pokemon-card
+  > .card-content
+  > .description-card
+  > .stat-card
+  > div
+  > p:nth-child(2) {
+  margin-top: -5px;
 }
