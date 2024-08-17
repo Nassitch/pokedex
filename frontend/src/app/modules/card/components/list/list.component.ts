@@ -24,10 +24,6 @@ export class ListComponent implements OnInit, OnDestroy {
     this.pokemonSub = this.cardService.getPokemonList$().subscribe()
   }
 
-  goSearch() {
-    return this.router.navigate(['/search'])
-  }
-
   ngOnDestroy(): void {
     this.pokemonSub.unsubscribe();
   }
