@@ -1,0 +1,35 @@
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+}
+
+section > #input-field {
+    height: 35px;
+    width: 220px;
+    margin-top: 70px;
+}
+
+section > #input-field > input {
+    height: 100%;
+    width: 100%;
+    font-size: 19px;
+    font-family: inherit;
+    padding-left: 15px;
+    border: none;
+    background-color: var(--background-color);
+    border-radius: 10px;
+}
+
+section > #result {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+section > div > #noting-msg {
+    color: var(--second-color);
+    font-size: 33px;
+}
