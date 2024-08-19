@@ -32,9 +32,22 @@ export class PostService {
   }
 
   async createPost(data: Prisma.PostCreateInput): Promise<Post> {
+    try {
     return this.prisma.post.create({
-      data,
+      data: {
+        title: data.title,
+        content: data.content,
+        author: {
+          connect: {
+            id: data.author?.connect?.id, 
+          },
+        },
+      },
     });
+  } catch (error) {
+    console.error('Erreur lors de la création du post :', error);
+    throw new Error('Erreur lors de la création du post.');
+  }
   }
 
   async updatePost(params: {

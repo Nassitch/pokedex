@@ -14,6 +14,23 @@ export class UserService {
     });
   }
 
+  async getAllUsers(params: {
+    skip?: number; // Nombre d'éléments à ignorer (pour la pagination)
+    take?: number; // Nombre maximum d'éléments à renvoyer
+    cursor?: Prisma.UserWhereUniqueInput; // Position du curseur (pour la pagination)
+    where?: Prisma.UserWhereInput; // Filtrage des utilisateurs selon certaines conditions
+    orderBy?: Prisma.UserOrderByWithRelationInput; // Ordre de tri des résultats
+  }): Promise<User[]> {
+      const { skip, take, cursor, where, orderBy } = params;
+      return await this.prisma.user.findMany({
+        skip,
+        take,
+        cursor,
+        where,
+        orderBy,
+      });
+  }
+
   async users(params: {
     skip?: number;
     take?: number;

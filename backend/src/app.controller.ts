@@ -17,10 +17,15 @@ export class AppController {
     private readonly userService: UserService,
     private readonly postService: PostService,
   ) {}
-
+  
   @Get('user/:id')
   async getUserById(@Param('id') id: string): Promise<UserModel> {
     return this.userService.user({ id: Number(id) });
+  }
+  
+  @Get('users')
+  async getAllUsers(): Promise<UserModel[]> {
+    return this.userService.getAllUsers({});
   }
 
   @Get('post/:id')
@@ -55,14 +60,14 @@ export class AppController {
 
   @Post('post')
   async createDraft(
-    @Body() postData: { title: string; content?: string; authorEmail: string },
+    @Body() postData: { title: string; content?: string; authorId: number },
   ): Promise<PostModel> {
-    const { title, content, authorEmail } = postData;
+    const { title, content, authorId } = postData;
     return this.postService.createPost({
       title,
       content,
       author: {
-        connect: { email: authorEmail },
+        connect: { id: authorId },
       },
     });
   }
