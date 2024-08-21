@@ -11,11 +11,11 @@ export class SearchService {
 
   private http = inject(HttpClient);
 
-  private readonly _BASE_URL: string = environment._BASE_URL;
+  private readonly _API_URL: string = environment._API_URL;
   private readonly _POKEMON: string = environment._POKEMON;
 
   getPokemonByName$(name: string): Observable<PokemonType> {
-    return this.http.get<PokemonType>(`${this._BASE_URL}${this._POKEMON}${name}`)
+    return this.http.get<PokemonType>(`${this._API_URL}${this._POKEMON}${name}`)
   }
-  
+
 }
