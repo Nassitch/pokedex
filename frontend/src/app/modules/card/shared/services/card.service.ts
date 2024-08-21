@@ -14,7 +14,7 @@ export class CardService implements OnDestroy {
 
   private http = inject(HttpClient);
 
-  private readonly _BASE_URL: string = environment._BASE_URL;
+  private readonly _API_URL: string = environment._API_URL;
 
   private limit: number = 12;
   private offset: number = 0;
@@ -25,7 +25,7 @@ export class CardService implements OnDestroy {
   getPokemonList$(): Observable<PokemonType[]> {
     return this.http
       .get<PokemonListType>(
-        `${this._BASE_URL}pokemon?limit=${this.limit}&offset=${this.offset}`
+        `${this._API_URL}pokemon?limit=${this.limit}&offset=${this.offset}`
       )
       .pipe(
         switchMap((pokemons: PokemonListType) => {
@@ -56,14 +56,14 @@ export class CardService implements OnDestroy {
       this.pokemonSub = this.getPokemonList$().subscribe();
     }
   }
-  
+
   nextPage(): void {
     this.limit += 12;
     this.offset += 12;
     this.pageNbr += 1;
     this.pokemonSub = this.getPokemonList$().subscribe();
   }
-  
+
   ngOnDestroy(): void {
     this.pokemonSub.unsubscribe();
   }
