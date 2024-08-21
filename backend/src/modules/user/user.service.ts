@@ -27,11 +27,7 @@ export class UserService {
     return this.prisma.user.findMany();
   }
 
-  async createUser(data: Prisma.UserCreateInput): Promise<User> {
-    return this.prisma.user.create({
-      data,
-    });
-  }
+ 
 
   async updateUser(id: number, newUser: UserDto) {
     return this.prisma.user.update({

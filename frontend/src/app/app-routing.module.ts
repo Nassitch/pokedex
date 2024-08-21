@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path:'search', loadChildren: () => import("./modules/search/search.module").then((m) => m.SearchModule)},
-  {path:'details', loadChildren: () => import("./modules/details/details.module").then((m) => m.DetailsModule)},
+  { path: 'details', loadChildren: () => import("./modules/details/details.module").then((m) => m.DetailsModule) },
+  { path: 'auth', loadChildren: () => import("./modules/auth/auth.module").then((m) => m.AuthModule) },
   {path:'', loadChildren: () => import("./modules/card/card.module").then((m) => m.CardModule)},
 ];
 

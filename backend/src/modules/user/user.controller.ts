@@ -21,10 +21,7 @@ export class UserController {
       return this.userService.getAllUsers();
     }
 
-    @Post()
-    async create(@Body() newUser: UserDto) {
-      return this.userService.createUser(newUser);
-    }
+   
     @Put(':id')
     update(@Param('id', ParseIntPipe) id: number, @Body() newUser: UserDto) {
         return this.userService.updateUser(id, newUser);
