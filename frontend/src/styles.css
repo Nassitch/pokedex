@@ -51,10 +51,11 @@
   font-family: "gill_sans";
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-  --main-color: #000000;
+  --main-color: #42a5f5;
   --second-color: #fff;
   --background-color: #eee;
   --dark-grey: #d9d9d9;
@@ -75,6 +76,106 @@
 
 .action-btn > img {
   width: 100%;
+}
+
+/* Default. */
+.input-text {
+  height: 55px;
+  width: 100%;
+  min-width: 335px;
+  max-width: 335px;
+  margin-bottom: 20px;
+  padding: 5px 15px;
+  background-color: var(--second-color);
+  border-radius: 10px;
+  border: 1px solid var(--main-color);
+}
+
+.input-text > label {
+  color: var(--main-color);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.input-text > input {
+  width: 100%;
+  color: var(--main-color);
+  font-size: 18px;
+  background-color: var(--second-color);
+  border: none;
+}
+
+/* Password. */
+.input-password {
+  height: 55px;
+  width: 100%;
+  min-width: 335px;
+  max-width: 335px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--second-color);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 5px 15px;
+  border: 1px solid var(--main-color);
+}
+
+.input-password > label {
+  color: var(--main-color);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.input-password > div > button {
+  height: 45px;
+  width: 45px;
+  margin-top: -20px;
+  background: transparent;
+  border: none;
+}
+
+.input-password > div > button > img {
+  width: 100%;
+}
+
+.input-password > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-password > div > input {
+  width: 100%;
+  color: var(--main-color);
+  font-size: 18px;
+  background: transparent;
+  border: none;
+}
+
+/* Error. */
+.error-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--error-msg);
+  text-align: center;
+  margin-block: -10px 10px;
+  padding: 5px 10px;
+  background-color: var(--error-background);
+  border-radius: 7px;
+}
+
+/* Submit button. */
+.submit-btn {
+  height: 35px;
+  width: 80%;
+  color: var(--main-color);
+  font-size: 18px;
+  font-weight: 600;
+  margin: auto;
+  background-color: var(--second-color);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 }
 
 .red-lighten-1 {
