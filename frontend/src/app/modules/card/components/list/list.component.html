@@ -1,5 +1,3 @@
-<div class="center">
-</div>
 <div class="list" *ngIf="pokemonList$ | async as pokemonList">
   <div *ngFor="let pokemon of pokemonList">
     <app-card [pokemon]="pokemon" />

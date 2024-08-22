@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { LoginType } from '../../models/login.type';
@@ -11,15 +11,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  @ViewChild('inputField') inputField!: ElementRef;
+  
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
   postSubscription$: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  isPasswordVisible: boolean = false;
+  typeInput: string = "password";
+  see: string = "../../../../assets/icons/see.svg";
+  hide: string = "../../../../assets/icons/hide.svg";
 
   Form = this.fb.group({
     email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
     password: ['', [Validators.required, Validators.minLength(8)]]
 });
+
+togglePasswordVisibility() {
+  this.isPasswordVisible = !this.isPasswordVisible;
+  this.typeInput = this.isPasswordVisible ? 'text' : 'password';
+}
+
+focusInput():void {
+  this.inputField.nativeElement.focus();
+}
 
   onSubmit(): void {
     const form = this.Form.value;

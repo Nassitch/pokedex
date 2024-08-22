@@ -1,18 +1,29 @@
 <section>
   <form [formGroup]="Form" (ngSubmit)="onSubmit()">
-    <label for="email">Email:</label>
-    <input id="email" name="email" type="text" formControlName="email" />
+    <h1>Login</h1>
+    <div class="input-text mb-4" (click)="focusInput()">
+      <label for="email">Email:</label>
+      <input id="email" name="email" type="text" formControlName="email" />
+    </div>
+      
+    <div class="input-password" (click)="focusInput()">
+      <label for="password">Password:</label>
+      <div>
+        <input
+        id="password"
+        name="password"
+        type="text"
+        formControlName="password"
+        />
 
-    <label for="password">Password:</label>
-    <input
-      id="password"
-      name="password"
-      type="text"
-      formControlName="password"
-    />
+        <button (click)="togglePasswordVisibility()" type="menu">
+          <img [src]="isPasswordVisible ? hide : see" alt="Voir/Masquer" />
+        </button>
+      </div>
+    </div>
 
-    <button type="submit" [disabled]="!Form.valid">Save</button>
+    <button type="submit" [disabled]="!Form.valid" class="submit-btn">Save</button>
+    
+    <a [routerLink]="'/auth/register'">S'inscrire</a>
   </form>
-
-  <a [routerLink]="'/auth/register'">S'inscrire</a>
 </section>
