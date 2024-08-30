@@ -3,7 +3,7 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    height: 65px;
+    min-height: 65px;
     display: flex;
     justify-content: space-between;
     backdrop-filter: blur(25px);
@@ -19,4 +19,20 @@ nav > div > button {
 
 nav > div > button > img {
     width: 100%;
+}
+.container-icons-right  {
+  display: flex;
+}
+.container-icons-right > .register {
+  display: flex;
+  flex-direction: column;
+
+}
+.container-icons-right > .register > button  {
+  width: 65px;
+  border: none;
+  background: transparent;
+}
+.container-icons-right > .register > button > img {
+  width: 100%;
 }
