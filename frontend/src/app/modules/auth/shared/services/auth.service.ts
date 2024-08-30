@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoginType } from '../../models/login.type';
-import {  catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import {  BehaviorSubject, catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/app/environment/environment.development';
 import { TokenType } from '../../models/token.type';
 import { RegisterType } from '../../models/register.type';
@@ -23,6 +23,18 @@ export class AuthService {
   private readonly _LOGIN: string = environment._LOGIN;
   private readonly _SIGN_UP: string = environment._SIGN_UP;
 
+
+  // private currentUserName = new BehaviorSubject<string | null>(null);
+
+  // setCurrentUser(user: UserToken): void {
+  //   this.currentUserName.next(user.name);
+  // }
+
+  // getCurrentUserName(): Observable<string | null> {
+  //   return this.currentUserName.asObservable();
+  // }
+
+
   postLogin$(loginInfo : LoginType): Observable<any> {
     return this.http.post<TokenType>(`${this._BASE_URL}${this._AUTH}${this._LOGIN}`, loginInfo).pipe(
       tap((response: TokenType) => {
@@ -33,8 +45,9 @@ export class AuthService {
           const userInfo: UserToken = {
             id: decodedToken.id,
             email: decodedToken.email,
+            // name: decodedToken.name
           };
-
+          // this.setCurrentUser(userInfo);
         }
       }),
       map((response: TokenType) => ({
