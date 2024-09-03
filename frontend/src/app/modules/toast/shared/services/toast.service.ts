@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastComponent } from './toast/toast.component';
+import { ToastComponent } from '../../components/toast/toast.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,9 @@ export class ToastService {
   }
 
   success(message: string) {
-    this.toastComponent.showToast(message, "Succès", "success");
+    this.toastComponent.showToast(message, "Success", "success");
   }
   error(message: string) {
-    this.toastComponent.showToast(message, "Erreur", "error");
+    this.toastComponent.showToast(message, "Error", "error");
   }
 }
