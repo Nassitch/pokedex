@@ -3,6 +3,8 @@
   height: 420px;
   width: 300px;
   margin: 10px 20px;
+  z-index: 2;
+  cursor: pointer;
 }
 
 .pokemon-card > img {
@@ -19,7 +21,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
+  z-index: 1;
 }
 
 .pokemon-card > .card-content > .header-card {
