@@ -15,7 +15,7 @@ export class UtilsService implements OnModuleInit {
         if (count === 0) {
             const data = [];
             
-            for (let i = 1; i <= 100; i += 1) {
+            for (let i = 1; i <= 1025; i += 1) {
                 data.push({
                     id: i,
                     ref: i
