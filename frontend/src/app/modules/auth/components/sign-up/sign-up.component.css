@@ -16,7 +16,6 @@ section > form {
   border-radius: 10px;
 }
 
-
 section > form > h1 {
   color: var(--second-color);
   font-size: 22px;
@@ -28,4 +27,13 @@ section > form > a {
   margin-top: 10px;
   text-align: center;
   color: var(--second-color);
+}
+
+@media screen and (max-width: 430px) {
+  section > form {
+    width: 80%;
+    min-width: 335px;
+    display: flex;
+    align-items: center;
+  }
 }

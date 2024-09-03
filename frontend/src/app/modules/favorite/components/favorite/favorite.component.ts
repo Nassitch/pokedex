@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, Subscription, switchMap, tap } from 'rxjs'
 import { PokemonType } from 'src/app/modules/card/models/pokemon.type';
 import { CardService } from 'src/app/modules/card/shared/services/card.service';
 import { Router } from '@angular/router';
-import { ToastService } from 'src/app/modules/toast/toast.service';
+import { ToastService } from 'src/app/modules/toast/shared/services/toast.service';
 
 @Component({
   selector: 'app-favorite',

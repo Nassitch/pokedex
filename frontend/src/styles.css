@@ -55,15 +55,17 @@
 }
 
 :root {
-  --main-color: #42a5f5;
+  --main-color: #1fa2ff;
   --second-color: #fff;
   --background-color: #eee;
   --dark-grey: #d9d9d9;
 
   --succes-msg: #355233;
-  --succes-background: #d4eed9;
-  --error-msg: #3f1519;
-  --error-background: #f7d7da;
+  --succes-background: #cff0bc;
+  --error-msg: #813746;
+  --error-background: #fbdbe1;
+  /* --error-msg: #FBDBE1;
+  --error-background: #813746; */
 }
 
 .back-btn {
@@ -85,12 +87,8 @@
 
 /* Default. */
 .input-text {
-  height: 55px;
   width: 100%;
-  min-width: 335px;
-  max-width: 335px;
   margin-bottom: 20px;
-  padding: 5px 15px;
   background-color: var(--second-color);
   border-radius: 10px;
   border: 1px solid var(--main-color);
@@ -98,24 +96,19 @@
 
 .input-text > label {
   color: var(--main-color);
-  font-size: 16px;
   font-weight: 600;
 }
 
 .input-text > input {
   width: 100%;
   color: var(--main-color);
-  font-size: 18px;
   background-color: var(--second-color);
   border: none;
 }
 
 /* Password. */
 .input-password {
-  height: 55px;
   width: 100%;
-  min-width: 335px;
-  max-width: 335px;
   display: flex;
   flex-direction: column;
   background-color: var(--second-color);
@@ -127,14 +120,10 @@
 
 .input-password > label {
   color: var(--main-color);
-  font-size: 16px;
   font-weight: 600;
 }
 
 .input-password > div > button {
-  height: 45px;
-  width: 45px;
-  margin-top: -20px;
   background: transparent;
   border: none;
 }
@@ -151,7 +140,6 @@
 .input-password > div > input {
   width: 100%;
   color: var(--main-color);
-  font-size: 18px;
   background: transparent;
   border: none;
 }
@@ -234,4 +222,84 @@
 
 .grey {
   background-color: #9e9e9e;
+}
+
+@media screen and (min-width: 431px) {
+  .input-text {
+    height: 55px;
+    min-width: 335px;
+    max-width: 335px;
+    padding: 5px 15px;
+  }
+
+  .input-text > label {
+    font-size: 16px;
+  }
+
+  .input-text > input {
+    font-size: 18px;
+  }
+
+  .input-password {
+    height: 55px;
+    min-width: 335px;
+    max-width: 335px;
+  }
+
+  .input-password > label {
+    font-size: 16px;
+  }
+
+  .input-password > div > input {
+    height: 25px;
+    font-size: 18px;
+  }
+
+  .input-password > div > button {
+    height: 45px;
+    width: 45px;
+    margin-top: -20px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .input-text {
+    display: flex;
+    flex-direction: column;
+    height: 45px;
+    min-width: 245px;
+    max-width: 245px;
+    padding: 5px 15px 0 15px;
+  }
+
+  .input-text > label {
+    font-size: 14px;
+  }
+
+  .input-text > input {
+    height: 15px;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .input-password {
+    height: 45px;
+    min-width: 245px;
+    max-width: 245px;
+  }
+
+  .input-password > label {
+    font-size: 14px;
+  }
+
+  .input-password > div > input {
+    height: 20px;
+    font-size: 16px;
+  }
+
+  .input-password > div > button {
+    height: 35px;
+    width: 35px;
+    margin-top: -15px;
+  }
 }
