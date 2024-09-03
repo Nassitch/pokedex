@@ -235,3 +235,25 @@
 .grey {
   background-color: #9e9e9e;
 }
+.list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn > button {
+  padding: 20px 30px;
+}
+
+.btn > p {
+  font-size: 42px;
+  color: var(--second-color);
+}

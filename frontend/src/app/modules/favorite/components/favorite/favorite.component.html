@@ -1,9 +1,11 @@
 <div class="list" *ngIf="favoriteList$ | async as favoriteList">
   <div *ngFor="let favorite of favoriteList">
     <app-card [pokemon]="favorite" />
-    <button class="btn-remove" (click)="deleteFavorite(favorite.id)">
-      <img [src]="'../../../../../assets/icons/corbeille.svg'" alt="" />
-    </button>
+    <div class="btn-remove-container">
+      <button class="btn-remove" (click)="deleteFavorite(favorite.id)">
+        <img [src]="'../../../../../assets/icons/corbeille.svg'" alt="" />
+      </button>
+    </div>
   </div>
 </div>
 <div class="btn">
