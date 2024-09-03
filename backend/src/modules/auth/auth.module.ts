@@ -9,7 +9,7 @@ import { JwtStrategy } from './jwt.strategy';
   imports: [JwtModule.register({
     global: true,
     secret: process.env.JWT_SECRET_KEY,
-    signOptions: { expiresIn: "1800s" },
+    signOptions: { expiresIn: "2d" },
   })],
   controllers: [AuthController],
   providers: [AuthService, PrismaService, JwtStrategy]
