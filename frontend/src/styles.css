@@ -59,6 +59,11 @@
   --second-color: #fff;
   --background-color: #eee;
   --dark-grey: #d9d9d9;
+
+  --succes-msg: #355233;
+  --succes-background: #d4eed9;
+  --error-msg: #3f1519;
+  --error-background: #f7d7da;
 }
 
 .back-btn {

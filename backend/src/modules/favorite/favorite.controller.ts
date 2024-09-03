@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, ParseIntPipe, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Request, UseGuards } from '@nestjs/common';
 import { FavoriteService } from './favorite.service';
 import { JwtAuthGuard } from '../auth/jwt.auth.guard';
 
@@ -11,15 +11,16 @@ export class FavoriteController {
     ) { }
     
     @Post('/:id')
-    create(@Param("id", ParseIntPipe) id: number, @Request() req: any) {
+    create(@Param("id", ParseIntPipe) id: number, @Request() req: any, @Body() pokemon: string) {
         const userId = req.user.id;
         console.log(req.user);
         return this.favoriteService.addUserToCard(userId, id);
     }
-
+    
     @Get('')
     getCards(@Request() req: any) {
         const userId = req.user.id;
+        console.log("Requête GET: " + userId);
         return this.favoriteService.getAllFavorite(userId);
     }  
 

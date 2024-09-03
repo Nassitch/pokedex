@@ -2,17 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FavoriteRoutingModule } from './favorite-routing.module';
-import { ComponentsComponent } from './components/components.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { CardModule } from '../card/card.module';
 
 
 
 @NgModule({
   declarations: [
-    ComponentsComponent,
+    FavoriteComponent
   ],
   imports: [
     CommonModule,
-    FavoriteRoutingModule
+    FavoriteRoutingModule,
+    CardModule
   ]
 })
 export class FavoriteModule { }
