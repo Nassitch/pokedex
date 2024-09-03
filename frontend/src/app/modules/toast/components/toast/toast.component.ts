@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ToastService } from '../toast.service';
+import { ToastService } from '../../shared/services/toast.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -37,7 +37,7 @@ export class ToastComponent implements OnInit {
 
   showToast(message: string, title: string, type: string): void {
     this.toasts.push({ message, title, type })
-    setTimeout(() => this.removeToast(this.toasts[0]), 2000)
+    setTimeout(() => this.removeToast(this.toasts[0]), 8000)
   }
 
   removeToast(toast: any) {

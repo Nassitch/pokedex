@@ -5,7 +5,7 @@ import { PokemonType } from 'src/app/modules/card/models/pokemon.type';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from 'src/app/modules/card/shared/services/card.service';
 import { Ability } from 'src/app/modules/card/models/ability.type';
-import { ToastService } from 'src/app/modules/toast/toast.service';
+import { ToastService } from 'src/app/modules/toast/shared/services/toast.service';
 import { FavoriteService } from 'src/app/modules/favorite/shared/favorite.service';
 
 @Component({
