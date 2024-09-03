@@ -24,7 +24,7 @@ section > #input-field > input {
 }
 
 section > #result {
-    height: 80vh;
+    height: 73vh;
     display: flex;
     align-items: center;
 }

@@ -22,7 +22,7 @@ export class SearchComponent implements OnDestroy {
 
   searchPokemon(name: string): Observable<PokemonType> {
     return this.searchService.getPokemonByName$(name.toLowerCase()).pipe(
-      debounceTime(1000),
+      debounceTime(3000),
       tap(result => this.searchTerms.next(result))
     )
    }

@@ -1,17 +1,10 @@
 <div class="list" *ngIf="favoriteList$ | async as favoriteList">
   <div *ngFor="let favorite of favoriteList">
-    <app-card [pokemon]="favorite" />
-    <button class="btn-remove" (click)="deleteFavorite(favorite.id)">
-      <img [src]="'../../../../../assets/icons/corbeille.svg'" alt="" />
-    </button>
-  </div>
-</div>
-<div class="btn">
-  <button (click)="this.cardService.previousPage()" class="action-btn">
-    <img src="../../../../../assets/icons/arrow-left.svg" alt="Search" />
-  </button>
-  <p>{{ this.cardService.pageNbr }}</p>
-  <button (click)="this.cardService.nextPage()" class="action-btn">
-    <img src="../../../../../assets/icons/arrow-right.svg" alt="Search" />
-  </button>
+      <app-card [pokemon]="favorite" />
+      <div>
+        <button class="remove-btn" (click)="deleteFavorite(favorite.id)">
+          <img src="../../../../../assets/icons/bin.svg" alt="Remove from favorites." />
+        </button>
+      </div>
+    </div>
 </div>

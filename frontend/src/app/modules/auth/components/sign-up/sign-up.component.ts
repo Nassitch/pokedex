@@ -5,6 +5,7 @@ import { RegisterType } from '../../models/register.type';
 import { Subscription } from 'rxjs';
 import { LoginType } from '../../models/login.type';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/modules/toast/shared/services/toast.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class SignUpComponent implements OnDestroy {
   @ViewChild('inputField') inputField!: ElementRef;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastService: ToastService) {}
 
   isPasswordVisible: boolean = false;
   typeInput: string = "password";
@@ -47,12 +48,11 @@ focusInput():void {
     }
     this.postSubscription$ = this.authService.postRegister$(newUser).subscribe({
       next: () => {
-        console.log("Vous êtes bien inscrit."),
         this.router.navigate(['/'])
+        this.toastService.success("Registration completed successfully, Welcome !");
       },
-      error: () => console.log("Une erreur s'est produite.")
+      error: () => this.toastService.error("An error has occurred.")
     })
-  console.log(this.Form.value);
 }
 
 ngOnDestroy(): void {

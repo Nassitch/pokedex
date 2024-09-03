@@ -4,6 +4,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { LoginType } from '../../models/login.type';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/modules/toast/shared/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   @ViewChild('inputField') inputField!: ElementRef;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastService: ToastService) {}
 
   postSubscription$: Subscription = new Subscription();
 
@@ -44,10 +45,10 @@ focusInput():void {
     }
     this.postSubscription$ = this.authService.postLogin$(user).subscribe({
       next: () => {
-        console.log("Content de te revoir !"),
         this.router.navigate(['/'])
+        this.toastService.success("Welcome to you ! You are now connected.")
       },
-      error: () => console.log("Identifiant incorrect.")
+      error: () => this.toastService.success("Incorrect login details.")
     })
 }
 }
