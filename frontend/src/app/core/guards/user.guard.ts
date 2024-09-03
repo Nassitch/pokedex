@@ -12,7 +12,7 @@ export const userGuard: CanActivateFn = (route, state) => {
 
   if (!decodedToken) {
     router.navigate(['']);
-    toastService.error("Your session is no longer valid.");
+    toastService.error("Your session is not valid, please log in.");
     return false;
   } else {
     return true;
