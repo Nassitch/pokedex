@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   @ViewChild('inputField') inputField!: ElementRef;
-  
+
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
   postSubscription$: Subscription = new Subscription();

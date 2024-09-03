@@ -1,10 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoginType } from '../../models/login.type';
-import {  Observable, switchMap } from 'rxjs';
+import {  BehaviorSubject, catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/app/environment/environment.development';
 import { TokenType } from '../../models/token.type';
 import { RegisterType } from '../../models/register.type';
+import { CookieService } from 'src/app/core/services/cookie.service';
+import { TokenService } from 'src/app/core/services/token.service';
+import { UserToken } from '../../models/userToken.type';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +15,50 @@ import { RegisterType } from '../../models/register.type';
 export class AuthService {
 
   private http = inject(HttpClient);
+  private cookie = inject(CookieService);
+  private tokenService = inject(TokenService);
 
   private readonly _BASE_URL: string = environment._BASE_URL;
   private readonly _AUTH: string = environment._AUTH;
   private readonly _LOGIN: string = environment._LOGIN;
   private readonly _SIGN_UP: string = environment._SIGN_UP;
 
-  postLogin$(loginInfo : LoginType): Observable<TokenType> {
-    return this.http.post<TokenType>(`${this._BASE_URL}${this._AUTH}${this._LOGIN}`, loginInfo);
+
+  // private currentUserName = new BehaviorSubject<string | null>(null);
+
+  // setCurrentUser(user: UserToken): void {
+  //   this.currentUserName.next(user.name);
+  // }
+
+  // getCurrentUserName(): Observable<string | null> {
+  //   return this.currentUserName.asObservable();
+  // }
+
+
+  postLogin$(loginInfo : LoginType): Observable<any> {
+    return this.http.post<TokenType>(`${this._BASE_URL}${this._AUTH}${this._LOGIN}`, loginInfo).pipe(
+      tap((response: TokenType) => {
+        this.cookie.setCookie("authToken", response.token, 1, true, "Lax");
+
+        const decodedToken: UserToken = this.tokenService.getTokenFromCookiesAndDecode();
+        if (decodedToken) {
+          const userInfo: UserToken = {
+            id: decodedToken.id,
+            email: decodedToken.email,
+            // name: decodedToken.name
+          };
+          // this.setCurrentUser(userInfo);
+        }
+      }),
+      map((response: TokenType) => ({
+        success: true,
+        token: response.token,
+        message: `Bienvenue`,
+      })),
+      catchError((error: HttpErrorResponse) => {
+        return of({ success: false, message: 'Identifiants invalides' });
+      })
+    );
   }
 
   postRegister$(registerInfo: RegisterType): Observable<TokenType> {
@@ -32,4 +71,5 @@ export class AuthService {
       )
 
   }
+
 }
