@@ -37,7 +37,7 @@ export class ToastComponent implements OnInit {
 
   showToast(message: string, title: string, type: string): void {
     this.toasts.push({ message, title, type })
-    setTimeout(() => this.removeToast(this.toasts[0]), 8000)
+    setTimeout(() => this.removeToast(this.toasts[0]), 4000)
   }
 
   removeToast(toast: any) {

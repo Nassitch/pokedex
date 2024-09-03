@@ -114,9 +114,11 @@ section > #pokemon-details > #container-details > #right-block > #stats-descript
 }
 
 section > .error-msg {
+    height: 96vh;
     display: flex;
     flex-direction: column;
     text-align: center;
+    justify-content: center;
 }
 
 section > .error-msg > h2 {

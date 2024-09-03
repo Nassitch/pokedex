@@ -43,8 +43,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   addToFavorite(id: number) {
     this.postSubscription$ = this.favoriteService.postFavorite$(id).subscribe({
-      next: () => this.toastService.success("Favoris ajouté avec succés !"),
-      error: () => this.toastService.error("Une erreur s'est produite !")
+      next: () => this.toastService.success("Your favorite is successfully added."),
+      error: () => this.toastService.error("You already have this pokemon in your favorites.")
     })
   }
 
