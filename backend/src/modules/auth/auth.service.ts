@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { AuthBody } from 'src/models/auth.body.type';
 import { PrismaService } from 'src/prisma.service';
 import { compare, hash } from "bcrypt";
@@ -35,11 +35,11 @@ export class AuthService {
             } 
         })
         if (!existUser) { 
-            throw new Error(`Utilasateur ${password} n'existe pas!`)
+            throw new NotFoundException(`Utilasateur ${password} n'existe pas!`)
         }
         const isPasswordSame = await this.hashValidate({ password, hashedPassword: existUser.password });
         if (!isPasswordSame) {
-            throw new Error('Mot de passe incorrect');
+            throw new UnauthorizedException('Mot de passe incorrect');
         }
         return this.authenticateUser({ id: existUser.id, email: existUser.email });
     }
