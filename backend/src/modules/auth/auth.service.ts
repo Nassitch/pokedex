@@ -8,9 +8,9 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-    constructor(private readonly prisma: PrismaService, private readonly jwt: JwtService) {}
+    constructor(protected readonly prisma: PrismaService, protected readonly jwt: JwtService) {}
 
-    private async hashPassword({ password }: { password: string }) {
+    protected async hashPassword({ password }: { password: string }) {
         const hashedPassword = await hash(password, 10);
         return hashedPassword;
     }

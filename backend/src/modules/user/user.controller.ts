@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Put, Request, UseGuards} from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from 'src/models/user.dto';
+import { JwtAuthGuard } from '../auth/jwt.auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
 
@@ -9,26 +11,27 @@ export class UserController {
         private readonly userService: UserService,
     ) {}
     
+    @Get('')
+    getCards(@Request() req: any) {
+        const userId = req.user.id;
+        return this.userService.getUser(userId);
+    } 
     
-    
-    @Get("/:id")
-    getUser(@Param("id", ParseIntPipe) id: number) {
-        return this.userService.getUser({ id });
-    }
-
-    @Get()
+    @Get("/all")
     findAll() {
-      return this.userService.getAllUsers();
+        return this.userService.getAllUsers();
     }
-
-   
-    @Put(':id')
-    update(@Param('id', ParseIntPipe) id: number, @Body() newUser: UserDto) {
-        return this.userService.updateUser(id, newUser);
+    
+    
+    @Put('')
+    update(@Request() req: any, @Body() newUser: UserDto) {
+        const userId: number = req.user.id;
+        return this.userService.updateUser(userId, newUser);
     }
-
-    @Delete(':id')
-    remove(@Param('id', ParseIntPipe) id: number) {
-        return this.userService.deleteUser(id);
+    
+    @Delete('')
+    remove(@Request() req: any) {
+        const userId: number = req.user.id;
+        return this.userService.deleteUser(userId);
       }
 }
