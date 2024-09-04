@@ -5,5 +5,6 @@ export const environment = {
   _AUTH: 'auth/',
   _LOGIN: 'login/',
   _SIGN_UP: 'sign-up/',
+  _USER: 'user/',
   _FAVORITE: 'favorite/',
 };

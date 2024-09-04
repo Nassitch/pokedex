@@ -1,0 +1,40 @@
+<section>
+  <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+    <h1>Your profile</h1>
+    <div class="input-text mb-4" (click)="focusInput()">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" formControlName="name" />
+    </div>
+
+    <div class="input-text mb-4" (click)="focusInput()">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="text" formControlName="email" />
+    </div>
+
+    <div class="input-password" (click)="focusInput()">
+      <label for="password">Password</label>
+      <div>
+        <input
+          id="password"
+          name="password"
+          [type]="typeInput"
+          formControlName="password"
+        />
+
+        <button (click)="togglePasswordVisibility()" type="button">
+          <img [src]="isPasswordVisible ? hide : see" alt="Voir/Masquer" />
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!Form.valid" class="submit-btn">
+      Save
+    </button>
+
+    <button type="button" class="logout-btn" (click)="logout()">Log out</button>
+
+    <button type="button" class="delete-account-btn" (click)="deleteAccount()">
+      Delete account
+    </button>
+  </form>
+</section>

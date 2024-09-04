@@ -1,5 +1,6 @@
-<div class="list" *ngIf="favoriteList$ | async as favoriteList">
-  <div *ngFor="let favorite of favoriteList">
+<section>
+  <ng-container class="list" *ngIf="favoriteList$ | async as favoriteList; else nothing">
+    <div *ngFor="let favorite of favoriteList">
       <app-card [pokemon]="favorite" />
       <div>
         <button class="remove-btn" (click)="deleteFavorite(favorite.id)">
@@ -7,4 +8,9 @@
         </button>
       </div>
     </div>
-</div>
+  </ng-container>
+  
+  <ng-template #nothing>
+    <p>You have not added any favorites yet.</p>
+  </ng-template>
+</section>

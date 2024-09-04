@@ -1,13 +1,15 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoginType } from '../../models/login.type';
-import {  BehaviorSubject, catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import {  catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/app/environment/environment.development';
 import { TokenType } from '../../models/token.type';
 import { RegisterType } from '../../models/register.type';
 import { CookieService } from 'src/app/core/services/cookie.service';
 import { TokenService } from 'src/app/core/services/token.service';
 import { UserToken } from '../../models/userToken.type';
+import { Router } from '@angular/router';
+import { ToastService } from 'src/app/modules/toast/shared/services/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,39 +17,27 @@ import { UserToken } from '../../models/userToken.type';
 export class AuthService {
 
   private http = inject(HttpClient);
-  private cookie = inject(CookieService);
+  private cookieService = inject(CookieService);
   private tokenService = inject(TokenService);
+  private router = inject(Router);
+  private toastService = inject(ToastService);
 
   private readonly _BASE_URL: string = environment._BASE_URL;
   private readonly _AUTH: string = environment._AUTH;
   private readonly _LOGIN: string = environment._LOGIN;
   private readonly _SIGN_UP: string = environment._SIGN_UP;
 
-
-  // private currentUserName = new BehaviorSubject<string | null>(null);
-
-  // setCurrentUser(user: UserToken): void {
-  //   this.currentUserName.next(user.name);
-  // }
-
-  // getCurrentUserName(): Observable<string | null> {
-  //   return this.currentUserName.asObservable();
-  // }
-
-
   postLogin$(loginInfo : LoginType): Observable<any> {
     return this.http.post<TokenType>(`${this._BASE_URL}${this._AUTH}${this._LOGIN}`, loginInfo).pipe(
       tap((response: TokenType) => {
-        this.cookie.setCookie("authToken", response.token, 1, true, "Lax");
+        this.cookieService.setCookie("authToken", response.token, 1, true, "Lax");
 
         const decodedToken: UserToken = this.tokenService.getTokenFromCookiesAndDecode();
         if (decodedToken) {
           const userInfo: UserToken = {
             id: decodedToken.id,
             email: decodedToken.email,
-            // name: decodedToken.name
           };
-          // this.setCurrentUser(userInfo);
         }
       }),
       map((response: TokenType) => ({
@@ -59,6 +49,12 @@ export class AuthService {
         return of({ success: false, message: 'Identifiants invalides' });
       })
     );
+  }
+
+  logout(): void {
+    this.cookieService.deleteCookie('authToken');
+    this.router.navigate(['']);
+    this.toastService.success("You are now logged out.");
   }
 
   postRegister$(registerInfo: RegisterType): Observable<TokenType> {

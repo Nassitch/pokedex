@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 
 
@@ -16,6 +16,10 @@ export class FavoriteService {
             card: true
           }
         })
+
+        if (userWithCards.length === 0) {
+          throw new NotFoundException(`Favorie n'existe pas!`)
+        }
 
         return userWithCards.map((userOnCard) => ({
           userId: userOnCard.userId,
