@@ -24,3 +24,8 @@
   cursor: pointer;
   
 }
+
+section > div > #noting-msg {
+  color: var(--second-color);
+  font-size: 33px;
+}
