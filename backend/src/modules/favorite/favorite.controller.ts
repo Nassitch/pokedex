@@ -13,14 +13,12 @@ export class FavoriteController {
     @Post('/:id')
     create(@Param("id", ParseIntPipe) id: number, @Request() req: any, @Body() pokemon: string) {
         const userId = req.user.id;
-        console.log(req.user);
         return this.favoriteService.addUserToCard(userId, id);
     }
     
     @Get('')
     getCards(@Request() req: any) {
         const userId = req.user.id;
-        console.log("Requête GET: " + userId);
         return this.favoriteService.getAllFavorite(userId);
     }  
 
