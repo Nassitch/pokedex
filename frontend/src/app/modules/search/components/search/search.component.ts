@@ -30,7 +30,6 @@ export class SearchComponent implements OnDestroy {
   search(term: string) {
     this.pokemonSub = this.searchPokemon(term).subscribe();
     this.searchTerms.next(this.pokemonSub);
-    console.log(this.searchTerms.getValue());
   }
 
   seeDetails(id: number): void {
