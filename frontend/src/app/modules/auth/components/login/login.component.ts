@@ -12,8 +12,6 @@ import { ToastService } from 'src/app/modules/toast/shared/services/toast.servic
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  @ViewChild('inputField') inputField!: ElementRef;
-
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastService: ToastService) {}
 
   postSubscription$: Subscription = new Subscription();
@@ -26,29 +24,25 @@ export class LoginComponent {
   Form = this.fb.group({
     email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
     password: ['', [Validators.required, Validators.minLength(8)]]
-});
+  });
 
-togglePasswordVisibility() {
-  this.isPasswordVisible = !this.isPasswordVisible;
-  this.typeInput = this.isPasswordVisible ? 'text' : 'password';
-}
-
-focusInput():void {
-  this.inputField.nativeElement.focus();
-}
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+    this.typeInput = this.isPasswordVisible ? 'text' : 'password';
+  }
 
   onSubmit(): void {
     const form = this.Form.value;
-    const user: LoginType= {
+    const user: LoginType = {
       email: form.email!,
       password: form.password!
     }
     this.postSubscription$ = this.authService.postLogin$(user).subscribe({
       next: () => {
         this.router.navigate(['/'])
-        this.toastService.success("Welcome to you ! You are now connected.")
+        this.toastService.success("Welcome to you! You are now connected.")
       },
-      error: () => this.toastService.success("Incorrect login details.")
-    })
-}
+      error: () => this.toastService.error("Incorrect login details.")
+    });
+  }
 }

@@ -13,7 +13,6 @@ import { ToastService } from 'src/app/modules/toast/shared/services/toast.servic
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnDestroy {
-  @ViewChild('inputField') inputField!: ElementRef;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastService: ToastService) {}
 
@@ -33,10 +32,6 @@ export class SignUpComponent implements OnDestroy {
 togglePasswordVisibility() {
   this.isPasswordVisible = !this.isPasswordVisible;
   this.typeInput = this.isPasswordVisible ? 'text' : 'password';
-}
-
-focusInput():void {
-  this.inputField.nativeElement.focus();
 }
 
   onSubmit() {
