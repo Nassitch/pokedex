@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FavoriteService } from '../../shared/favorite.service';
-import { FavoriteCard } from '../../models/favorite.card.type';
-import { BehaviorSubject, Observable, Subscription, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 import { PokemonType } from 'src/app/modules/card/models/pokemon.type';
 import { CardService } from 'src/app/modules/card/shared/services/card.service';
 import { Router } from '@angular/router';
@@ -11,10 +10,9 @@ import { ToastService } from 'src/app/modules/toast/shared/services/toast.servic
   selector: 'app-favorite',
   templateUrl: './favorite.component.html',
   styleUrls: ['./favorite.component.css'],
-
 })
 export class FavoriteComponent implements OnInit {
-  protected refreshFavoriteList$  = new BehaviorSubject<void>(undefined);
+  protected refreshFavoriteList$ = new BehaviorSubject<void>(undefined);
 
   protected cardService = inject(CardService);
   protected router = inject(Router);
@@ -27,17 +25,19 @@ export class FavoriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.favoriteList$ = this.refreshFavoriteList$.pipe(
-      switchMap(() => this.favoriteService.getAllFavorite$())
+      switchMap(() => this.favoriteService.getAllFavorite$()),
     );
   }
 
   deleteFavorite(id: number) {
-    this.deleteSubscription$ = this.favoriteService.deleteFavorite$(id).subscribe({
-      next: () => {
-        this.toastService.success("Favoris supprimer avec succés !")
-        this.refreshFavoriteList$.next()
-      },
-      error: () => this.toastService.error("Une erreur s'est produite !")
-    })
+    this.deleteSubscription$ = this.favoriteService
+      .deleteFavorite$(id)
+      .subscribe({
+        next: () => {
+          this.toastService.success('Favorite deleted correctly.');
+          this.refreshFavoriteList$.next();
+        },
+        error: () => this.toastService.error('An error has occurred.'),
+      });
   }
 }

@@ -5,15 +5,8 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './components/search/search.component';
 import { CardModule } from '../card/card.module';
 
-
 @NgModule({
-  declarations: [
-    SearchComponent
-  ],
-  imports: [
-    CommonModule,
-    SearchRoutingModule,
-    CardModule
-  ]
+  declarations: [SearchComponent],
+  imports: [CommonModule, SearchRoutingModule, CardModule],
 })
-export class SearchModule { }
+export class SearchModule {}

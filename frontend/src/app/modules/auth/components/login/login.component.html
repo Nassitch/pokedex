@@ -1,7 +1,12 @@
 <section>
   <form [formGroup]="Form" (ngSubmit)="onSubmit()">
     <h1>Login</h1>
-    <div class="input-text mb-4" (click)="emailField.focus()">
+    <div
+      class="input-text mb-4"
+      tabindex="0"
+      (click)="emailField.focus()"
+      (keydown.enter)="emailField.focus()"
+    >
       <label for="email">Email:</label>
       <input
         id="email"
@@ -12,7 +17,12 @@
       />
     </div>
 
-    <div class="input-password" (click)="passwordField.focus()">
+    <div
+      class="input-password"
+      tabindex="0"
+      (click)="passwordField.focus()"
+      (keydown.enter)="passwordField.focus()"
+    >
       <label for="password">Password:</label>
       <div>
         <input

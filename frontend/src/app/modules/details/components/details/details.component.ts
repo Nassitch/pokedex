@@ -26,7 +26,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   postSubscription$: Subscription = new Subscription();
 
   ngOnInit(): void {
-    const id: number = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.pokemon$ = this.detailsService.getDetailPokemonById$(id);
 
@@ -34,18 +34,22 @@ export class DetailsComponent implements OnInit, OnDestroy {
       switchMap((pokemon) => {
         const abilityObservables: Observable<Ability>[] = pokemon.abilities.map(
           (abilityItem: { ability: { url: string } }) =>
-            this.cardService.getAbilitiesList$(abilityItem.ability.url)
+            this.cardService.getAbilitiesList$(abilityItem.ability.url),
         );
         return forkJoin(abilityObservables);
-      })
+      }),
     );
   }
 
   addToFavorite(id: number) {
     this.postSubscription$ = this.favoriteService.postFavorite$(id).subscribe({
-      next: () => this.toastService.success("Your favorite is successfully added."),
-      error: () => this.toastService.error("You already have this pokemon in your favorites.")
-    })
+      next: () =>
+        this.toastService.success('Your favorite is successfully added.'),
+      error: () =>
+        this.toastService.error(
+          'You already have this pokemon in your favorites.',
+        ),
+    });
   }
 
   ngOnDestroy(): void {

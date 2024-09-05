@@ -1,5 +1,5 @@
-export type FavoriteCard = {
+export interface FavoriteCard {
   cardId: number;
   userId: number;
-  ref: number
+  ref: number;
 }
