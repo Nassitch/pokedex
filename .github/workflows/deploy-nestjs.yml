@@ -19,9 +19,11 @@ jobs:
             node-version: '20'
 
         - name: Install dependencies
+          working-directory: ./backend
           run: npm install
 
         - name: Build NestJS application
+          working-directory: ./backend
           run: npm run build
 
         - name: Deploy to Azure
