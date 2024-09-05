@@ -32,4 +32,4 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
         run: |
-          rsync -avz --delete back/dist/ $SSH_USER@$SSH_HOST:/pokedex/server
+          scp -r -i ~/.ssh/SarrazinSSH.pem backend/dist/ $SSH_USER@$SSH_HOST:~/pokedex/client
