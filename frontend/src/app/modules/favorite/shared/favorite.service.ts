@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, forkJoin, map, Observable, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, forkJoin, map, Observable, switchMap } from 'rxjs';
 import { FavoriteCard } from '../models/favorite.card.type';
 import { environment } from 'src/app/environment/environment.development';
 import { PokemonType } from '../../card/models/pokemon.type';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FavoriteService {
-  public _pokemonDetails$: BehaviorSubject<PokemonType[] | null> = new BehaviorSubject<PokemonType[] | null>(null);
+  public _pokemonDetails$: BehaviorSubject<PokemonType[] | null> =
+    new BehaviorSubject<PokemonType[] | null>(null);
 
   private http = inject(HttpClient);
 
@@ -18,31 +19,41 @@ export class FavoriteService {
   private readonly _FAVORITE: string = environment._FAVORITE;
   private readonly _POKEMON: string = environment._POKEMON;
 
-
   getAllFavorite$(): Observable<PokemonType[]> {
-    return this.http.get<FavoriteCard[]>(`${this._BASE_URL}${this._FAVORITE}`).pipe(
-      switchMap((favoriteCards: FavoriteCard[]) => {
-        const cardsId = favoriteCards.map((favoriteCard: FavoriteCard) => favoriteCard.ref);
+    return this.http
+      .get<FavoriteCard[]>(`${this._BASE_URL}${this._FAVORITE}`)
+      .pipe(
+        switchMap((favoriteCards: FavoriteCard[]) => {
+          const cardsId = favoriteCards.map(
+            (favoriteCard: FavoriteCard) => favoriteCard.ref,
+          );
 
-        const getRef$ = cardsId.map((ref) => this.getPokemonCard$(ref));
+          const getRef$ = cardsId.map((ref) => this.getPokemonCard$(ref));
 
-        return forkJoin(getRef$).pipe(
-          map((pokemonArray: PokemonType[][]) => pokemonArray.flat())
-        )
-      })
-    );
+          return forkJoin(getRef$).pipe(
+            map((pokemonArray: PokemonType[][]) => pokemonArray.flat()),
+          );
+        }),
+      );
   }
 
   getPokemonCard$(id: number): Observable<PokemonType[]> {
-    return this.http.get<PokemonType[]>(`${this._API_URL}${this._POKEMON}${id}`);
+    return this.http.get<PokemonType[]>(
+      `${this._API_URL}${this._POKEMON}${id}`,
+    );
   }
 
   postFavorite$(id: number): Observable<FavoriteCard> {
-    const pokemon = "";
-    return this.http.post<FavoriteCard>(`${this._BASE_URL}${this._FAVORITE}${id}`, pokemon)
+    const pokemon = '';
+    return this.http.post<FavoriteCard>(
+      `${this._BASE_URL}${this._FAVORITE}${id}`,
+      pokemon,
+    );
   }
 
   deleteFavorite$(id: number): Observable<FavoriteCard> {
-    return this.http.delete<FavoriteCard>(`${this._BASE_URL}${this._FAVORITE}${id}`);
+    return this.http.delete<FavoriteCard>(
+      `${this._BASE_URL}${this._FAVORITE}${id}`,
+    );
   }
 }

@@ -1,20 +1,25 @@
 import { Component, inject, OnDestroy } from '@angular/core';
 import { SearchService } from '../../shared/services/search.service';
-import { BehaviorSubject, debounceTime, Observable, Subscription, tap} from 'rxjs';
+import {
+  BehaviorSubject,
+  debounceTime,
+  Observable,
+  Subscription,
+  tap,
+} from 'rxjs';
 import { PokemonType } from 'src/app/modules/card/models/pokemon.type';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnDestroy {
-
   private searchService = inject(SearchService);
   private router = inject(Router);
 
-  searchTerms = new BehaviorSubject<any>(null);
+  searchTerms = new BehaviorSubject<PokemonType | null>(null);
 
   pokemonCardList$!: Observable<PokemonType[]>;
 
@@ -23,17 +28,16 @@ export class SearchComponent implements OnDestroy {
   searchPokemon(name: string): Observable<PokemonType> {
     return this.searchService.getPokemonByName$(name.toLowerCase()).pipe(
       debounceTime(3000),
-      tap(result => this.searchTerms.next(result))
-    )
-   }
+      tap((result) => this.searchTerms.next(result)),
+    );
+  }
 
   search(term: string) {
     this.pokemonSub = this.searchPokemon(term).subscribe();
-    this.searchTerms.next(this.pokemonSub);
   }
 
   seeDetails(id: number): void {
-    this.router.navigate([`/details/${id}`])
+    this.router.navigate([`/details/${id}`]);
   }
 
   ngOnDestroy(): void {

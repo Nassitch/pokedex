@@ -1,16 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'typeIcon'
+  name: 'typeIcon',
 })
 export class TypeIconPipe implements PipeTransform {
-
-  private availableIcons: Set<string> = new Set([
-    'normal', 'fire', 'water', 'grass', 'psychic', 'electrik'
+  private availableIcons = new Set<string>([
+    'normal',
+    'fire',
+    'water',
+    'grass',
+    'psychic',
+    'electrik',
   ]);
 
-  transform(types: { slot: number, type: { name: string, url: string } }[]): string[] {
-    return types.map(typeObj => this.getIconPath(typeObj.type.name));
+  transform(
+    types: { slot: number; type: { name: string; url: string } }[],
+  ): string[] {
+    return types.map((typeObj) => this.getIconPath(typeObj.type.name));
   }
 
   private getIconPath(typeName: string): string {
@@ -19,5 +25,4 @@ export class TypeIconPipe implements PipeTransform {
     }
     return `assets/icons/type_normal.jpg`;
   }
-
 }

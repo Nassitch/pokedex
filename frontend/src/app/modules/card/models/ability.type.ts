@@ -1,5 +1,5 @@
-export type Ability = {
-  effect_changes: any[];
+export interface Ability {
+  effect_changes: EffectChange[];
   effect_entries: EffectEntry[];
   flavor_text_entries: FlavorTextEntry[];
   generation: Generation;
@@ -8,57 +8,62 @@ export type Ability = {
   name: string;
   names: Name[];
   pokemon: Pokemon[];
-};
+}
 
-type EffectEntry = {
+interface EffectChange {
+  version_group: VersionGroup;
+  effect_entries: EffectEntry[];
+}
+
+interface EffectEntry {
   effect: string;
   language: Language;
   short_effect: string;
-};
+}
 
-type Language = {
+interface Language {
   name: string;
   url: string;
-};
+}
 
-type FlavorTextEntry = {
+interface FlavorTextEntry {
   flavor_text: string;
   language: Language2;
   version_group: VersionGroup;
-};
+}
 
-type Language2 = {
+interface Language2 {
   name: string;
   url: string;
-};
+}
 
-type VersionGroup = {
+interface VersionGroup {
   name: string;
   url: string;
-};
+}
 
-type Generation = {
+interface Generation {
   name: string;
   url: string;
-};
+}
 
-type Name = {
+interface Name {
   language: Language3;
   name: string;
-};
+}
 
-type Language3 = {
+interface Language3 {
   name: string;
   url: string;
-};
+}
 
-type Pokemon = {
+interface Pokemon {
   is_hidden: boolean;
   pokemon: Pokemon2;
   slot: number;
-};
+}
 
-type Pokemon2 = {
+interface Pokemon2 {
   name: string;
   url: string;
-};
+}

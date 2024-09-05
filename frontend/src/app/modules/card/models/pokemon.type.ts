@@ -1,4 +1,4 @@
-export type PokemonType = {
+export interface PokemonType {
   abilities: Abilities[];
   base_experience: number;
   cries: Cries;
@@ -19,46 +19,46 @@ export type PokemonType = {
   stats: Stat[];
   types: Type[];
   weight: number;
-};
+}
 
-type Abilities = {
+interface Abilities {
   ability: Ability;
   is_hidden: boolean;
   slot: number;
-};
+}
 
-type Ability = {
+interface Ability {
   name: string;
   url: string;
-};
+}
 
-type Cries = {
+interface Cries {
   latest: string;
   legacy: string;
-};
+}
 
-type Form = {
+interface Form {
   name: string;
   url: string;
-};
+}
 
-type GameIndice = {
+interface GameIndice {
   game_index: number;
   version: Form;
-};
+}
 
-type Moves = {
+interface Moves {
   move: Form;
   version_group_details: VersionGroupDetail[];
-};
+}
 
-type VersionGroupDetail = {
+interface VersionGroupDetail {
   level_learned_at: number;
   move_learn_methode: Form;
   version_group: Form;
-};
+}
 
-type Sprites = {
+interface Sprites {
   back_default: string;
   back_female: string | null;
   back_shiny: string;
@@ -69,33 +69,33 @@ type Sprites = {
   front_shiny_female: string | null;
   other: Other;
   versions: Version;
-};
+}
 
-type Other = {
+interface Other {
   dream_world: DreamWorld;
   home: Home;
   'official-artwork': OfficialArtwork;
   showdown: ShowDown;
-};
+}
 
-type DreamWorld = {
+interface DreamWorld {
   front_default: string;
   front_female: string | null;
-};
+}
 
-type Home = {
+interface Home {
   front_default: string;
   front_female: string | null;
   front_shiny: string;
   front_shiny_female: string | null;
-};
+}
 
-type OfficialArtwork = {
+interface OfficialArtwork {
   front_default: string;
   front_shiny: string;
-};
+}
 
-type ShowDown = {
+interface ShowDown {
   back_default: string;
   back_female: string | null;
   back_shiny: string;
@@ -104,9 +104,9 @@ type ShowDown = {
   front_female: string | null;
   front_shiny: string;
   front_shiny_female: string | null;
-};
+}
 
-type Version = {
+interface Version {
   'generation-i': GenerationI;
   'generation-ii': GenerationII;
   'generation-iii': GenerationIII;
@@ -115,38 +115,38 @@ type Version = {
   'generation-vi': GenerationVI;
   'generation-vii': GenerationVII;
   'generation-viii': GenerationVIII;
-};
+}
 
-type GenerationI = {
+interface GenerationI {
   'red-blue': RedBlue;
   yellow: Yellow;
-};
+}
 
-type RedBlue = {
+interface RedBlue {
   back_default: string;
   back_gray: string;
   back_transparent: string;
   front_default: string;
   front_gray: string;
   front_transparent: string;
-};
+}
 
-type Yellow = {
+interface Yellow {
   back_default: string;
   back_gray: string;
   back_transparent: string;
   front_default: string;
   front_gray: string;
   front_transparent: string;
-};
+}
 
-type GenerationII = {
+interface GenerationII {
   crystal: Crystal;
   gold: Gold;
   silver: Silver;
-};
+}
 
-type Crystal = {
+interface Crystal {
   back_default: string;
   back_shiny: string;
   back_shiny_transparent: string;
@@ -155,56 +155,56 @@ type Crystal = {
   front_shiny: string;
   front_shiny_transparent: string;
   front_transparent: string;
-};
+}
 
-type Gold = {
+interface Gold {
   back_default: string;
   back_shiny: string;
   front_default: string;
   front_shiny: string;
   front_transparent: string;
-};
+}
 
-type Silver = {
+interface Silver {
   back_default: string;
   back_shiny: string;
   front_default: string;
   front_shiny: string;
   front_transparent: string;
-};
+}
 
-type GenerationIII = {
+interface GenerationIII {
   emerald: Emerald;
   'firered-leafgreen': FireredLeafgreen;
   'ruby-sapphire': RubySapphire;
-};
+}
 
-type Emerald = {
+interface Emerald {
   front_default: string;
   front_shiny: string;
-};
+}
 
-type FireredLeafgreen = {
+interface FireredLeafgreen {
   back_default: string;
   back_shiny: string;
   front_default: string;
   front_shiny: string;
-};
+}
 
-type RubySapphire = {
+interface RubySapphire {
   back_default: string;
   back_shiny: string;
   front_default: string;
   front_shiny: string;
-};
+}
 
-type GenerationIV = {
+interface GenerationIV {
   'diamond-pearl': DiamondPearl;
   'heartgold-soulsilver': DiamondPearl;
   platinum: DiamondPearl;
-};
+}
 
-type DiamondPearl = {
+interface DiamondPearl {
   back_default: string;
   back_female: string | null;
   back_shiny: string;
@@ -213,13 +213,13 @@ type DiamondPearl = {
   front_female: string | null;
   front_shiny: string;
   front_shiny_female: string | null;
-};
+}
 
-type GenerationV = {
+interface GenerationV {
   'black-white': BlackWhite;
-};
+}
 
-type BlackWhite = {
+interface BlackWhite {
   animated: Animated;
   back_default: string;
   back_female: string | null;
@@ -229,9 +229,9 @@ type BlackWhite = {
   front_female: string | null;
   front_shiny: string;
   front_shiny_female: string | null;
-};
+}
 
-type Animated = {
+interface Animated {
   back_default: string;
   back_female: string | null;
   back_shiny: string;
@@ -240,48 +240,48 @@ type Animated = {
   front_female: string | null;
   front_shiny: string;
   front_shiny_female: string | null;
-};
+}
 
-type GenerationVI = {
+interface GenerationVI {
   'omega-ruby-alphasapphire': OmegaRubyAlphasapphire;
   'x-y': OmegaRubyAlphasapphire;
-};
+}
 
-type OmegaRubyAlphasapphire = {
+interface OmegaRubyAlphasapphire {
   front_default: string;
   front_female: string | null;
   front_shiny: string;
   front_shiny_female: string | null;
-};
+}
 
-type GenerationVII = {
+interface GenerationVII {
   icons: Icons;
   'ultra-sun-ultra-moon': UltraSunUltraMoon;
-};
+}
 
-type Icons = {
+interface Icons {
   front_default: string;
   front_female: string | null;
-};
+}
 
-type UltraSunUltraMoon = {
+interface UltraSunUltraMoon {
   front_default: string;
   front_female: string | null;
   front_shiny: string;
   front_shiny_female: string | null;
-};
+}
 
-type GenerationVIII = {
+interface GenerationVIII {
   icons: Icons;
-};
+}
 
-type Stat = {
+interface Stat {
   base_stat: number;
   effort: number;
   stat: Form;
-};
+}
 
-type Type = {
+interface Type {
   slot: number;
   type: Form;
-};
+}

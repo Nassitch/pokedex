@@ -1,12 +1,13 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { TokenService } from '../services/token.service';
-import { TokenType } from 'src/app/modules/auth/models/token.type';
 import { ToastService } from 'src/app/modules/toast/shared/services/toast.service';
+import { UserToken } from 'src/app/modules/auth/models/userToken.type';
 
-export const userGuard: CanActivateFn = (route, state) => {
+export const userGuard: CanActivateFn = (route) => {
   const tokenService = inject(TokenService);
-  const decodedToken: TokenType = tokenService.getTokenFromCookiesAndDecode();
+  const decodedToken: UserToken | null =
+    tokenService.getTokenFromCookiesAndDecode();
   const router = inject(Router);
   const toastService = inject(ToastService);
 

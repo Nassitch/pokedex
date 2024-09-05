@@ -23,10 +23,10 @@ export class ProfileComponent implements OnInit {
     private toastService: ToastService
   ) {}
 
-  isPasswordVisible: boolean = false;
-  typeInput: string = 'password';
-  see: string = '../../../../assets/icons/see.svg';
-  hide: string = '../../../../assets/icons/hide.svg';
+  isPasswordVisible = false;
+  typeInput = 'password';
+  see = '../../../../assets/icons/see.svg';
+  hide = '../../../../assets/icons/hide.svg';
 
   getSubscription$: Subscription = new Subscription();
   postSubscription$: Subscription = new Subscription();
@@ -70,9 +70,9 @@ export class ProfileComponent implements OnInit {
   onSubmit(): void {
     const form = this.Form.value;
     const updateProfile: Profile = {
-      name: form.name!,
-      email: form.email!,
-      password: form.password!,
+      name: form.name ?? '',
+      email: form.email ?? '',
+      password: form.password ?? '',
     };
     this.postSubscription$ = this.profileService
       .updateProfile$(updateProfile)

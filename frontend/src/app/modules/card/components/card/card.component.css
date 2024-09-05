@@ -82,8 +82,8 @@
   > .ability-card
   > div
   > .ability-name {
-    text-align: center;
-    margin-block: -22px 10px;
+  text-align: center;
+  margin-block: -22px 10px;
   font-size: 18px;
 }
 
@@ -119,12 +119,22 @@
   border-radius: 50%;
 }
 
-.pokemon-card > .card-content > .description-card > .attack-card > .attack-name > p {
+.pokemon-card
+  > .card-content
+  > .description-card
+  > .attack-card
+  > .attack-name
+  > p {
   font-size: 18px;
   font-weight: bold;
 }
 
-.pokemon-card > .card-content > .description-card > .attack-card > .attack-indice > p {
+.pokemon-card
+  > .card-content
+  > .description-card
+  > .attack-card
+  > .attack-indice
+  > p {
   font-size: 20px;
 }
 

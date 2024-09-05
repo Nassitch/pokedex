@@ -1,19 +1,26 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { CookieService } from '../services/cookie.service';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-
   private cookiesServives = inject(CookieService);
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    req: HttpRequest<unknown>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<unknown>> {
     const token = this.cookiesServives.getCookie('authToken');
 
     if (token) {
       const cloned = req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${token}`)
+        headers: req.headers.set('Authorization', `Bearer ${token}`),
       });
 
       return next.handle(cloned);

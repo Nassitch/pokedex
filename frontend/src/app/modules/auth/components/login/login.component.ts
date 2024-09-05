@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { LoginType } from '../../models/login.type';
@@ -9,21 +9,32 @@ import { ToastService } from 'src/app/modules/toast/shared/services/toast.servic
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastService: ToastService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
   postSubscription$: Subscription = new Subscription();
 
-  isPasswordVisible: boolean = false;
-  typeInput: string = "password";
-  see: string = "../../../../assets/icons/see.svg";
-  hide: string = "../../../../assets/icons/hide.svg";
+  isPasswordVisible = false;
+  typeInput = 'password';
+  see = '../../../../assets/icons/see.svg';
+  hide = '../../../../assets/icons/hide.svg';
 
   Form = this.fb.group({
-    email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
-    password: ['', [Validators.required, Validators.minLength(8)]]
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'),
+      ],
+    ],
+    password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
   togglePasswordVisibility() {
@@ -34,15 +45,15 @@ export class LoginComponent {
   onSubmit(): void {
     const form = this.Form.value;
     const user: LoginType = {
-      email: form.email!,
-      password: form.password!
-    }
+      email: form.email ?? '',
+      password: form.password ?? '',
+    };
     this.postSubscription$ = this.authService.postLogin$(user).subscribe({
       next: () => {
-        this.router.navigate(['/'])
-        this.toastService.success("Welcome to you! You are now connected.")
+        this.router.navigate(['/']);
+        this.toastService.success('Welcome to you! You are now connected.');
       },
-      error: () => this.toastService.error("Incorrect login details.")
+      error: () => this.toastService.error('Incorrect login details.'),
     });
   }
 }
