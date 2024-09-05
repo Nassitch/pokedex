@@ -1,6 +1,6 @@
-export type UserToken = {
-  id: number,
-  email: string,
-  iat?: number,
-  exp?: number
-  }
+export interface UserToken {
+  id: number;
+  email: string;
+  iat?: number;
+  exp?: number;
+}

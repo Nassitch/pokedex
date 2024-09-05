@@ -1,5 +1,13 @@
-<div class="pokemon-card" (click)="seeDetails(pokemon.id)">
-  <img [src]="pokemon.types[0].type.name | typeCardColor" />
+<div
+  class="pokemon-card"
+  (click)="seeDetails(pokemon.id)"
+  (keydown.enter)="seeDetails(pokemon.id)"
+  tabindex="0"
+>
+  <img
+    [src]="pokemon.types[0].type.name | typeCardColor"
+    alt="Type of pokemon"
+  />
 
   <div class="card-content">
     <div class="header-card">

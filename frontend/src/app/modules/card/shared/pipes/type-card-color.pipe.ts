@@ -1,15 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'typeCardColor'
+  name: 'typeCardColor',
 })
 export class TypeCardColorPipe implements PipeTransform {
-
   transform(type: string): string {
-
     let cardColor: string;
 
-    switch(type) {
+    switch (type) {
       case 'fire':
         cardColor = 'fire_card.png';
         break;
@@ -25,12 +23,11 @@ export class TypeCardColorPipe implements PipeTransform {
       case 'fighting':
         cardColor = 'fighting_card.png';
         break;
-        default:
-          cardColor = 'dragon_card.png';
-          break;
+      default:
+        cardColor = 'dragon_card.png';
+        break;
     }
 
     return '../../assets/cards/' + cardColor;
   }
-
 }

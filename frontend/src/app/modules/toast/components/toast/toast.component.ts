@@ -1,6 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ToastService } from '../../shared/services/toast.service';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { ToastType } from '../../models/toast.interface';
 
 @Component({
   selector: 'app-toast',
@@ -8,39 +15,40 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   styleUrls: ['./toast.component.css'],
   animations: [
     trigger('toastAnimation', [
-      state('void', style({
-        opacity: 0,
-        transform: 'translateY(-100%)'
-      })),
-      state('*', style({
-        opacity: 1,
-        transform: 'translateY(0)'
-      })),
-      transition('void => *', [
-        animate('300ms ease-in')
-      ]),
-      transition('* => void', [
-        animate('300ms ease-out')
-      ])
-    ])
-  ]
+      state(
+        'void',
+        style({
+          opacity: 0,
+          transform: 'translateY(-100%)',
+        }),
+      ),
+      state(
+        '*',
+        style({
+          opacity: 1,
+          transform: 'translateY(0)',
+        }),
+      ),
+      transition('void => *', [animate('300ms ease-in')]),
+      transition('* => void', [animate('300ms ease-out')]),
+    ]),
+  ],
 })
 export class ToastComponent implements OnInit {
+  toasts: ToastType[] = [];
 
-  toasts: any[] = [];
-
-  private toastService = inject(ToastService)
+  private toastService = inject(ToastService);
 
   ngOnInit(): void {
-    this.toastService.setToastComponent(this)
+    this.toastService.setToastComponent(this);
   }
 
   showToast(message: string, title: string, type: string): void {
-    this.toasts.push({ message, title, type })
-    setTimeout(() => this.removeToast(this.toasts[0]), 4000)
+    this.toasts.push({ message, title, type });
+    setTimeout(() => this.removeToast(this.toasts[0]), 4000);
   }
 
-  removeToast(toast: any) {
-    this.toasts= this.toasts.filter(t => t !== toast)
+  removeToast(toast: ToastType) {
+    this.toasts = this.toasts.filter((t) => t !== toast);
   }
 }

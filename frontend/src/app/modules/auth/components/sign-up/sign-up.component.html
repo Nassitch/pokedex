@@ -1,28 +1,54 @@
 <section>
   <form [formGroup]="Form" (ngSubmit)="onSubmit()">
     <h1>Sign up</h1>
-    <div class="input-text mb-4" (click)="nameField.focus()">
-    <label for="name">Name</label>
-    <input id="name" name="name" type="text" formControlName="name" #nameField />
-  </div>
-
-    <div class="input-text mb-4" (click)="emailField.focus()">
-      <label for="email">Email</label>
-      <input id="email" name="email" type="text" formControlName="email" #emailField />
+    <div
+      class="input-text mb-4"
+      tabindex="0"
+      (click)="nameField.focus()"
+      (keydown.enter)="nameField.focus()"
+    >
+      <label for="name">Name</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        formControlName="name"
+        #nameField
+      />
     </div>
 
-    
-    <div class="input-password" (click)="passwordField.focus()">
-        <label for="password">Password</label>
+    <div
+      class="input-text mb-4"
+      tabindex="0"
+      (click)="emailField.focus()"
+      (keydown.enter)="emailField.focus()"
+    >
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="text"
+        formControlName="email"
+        #emailField
+      />
+    </div>
+
+    <div
+      class="input-password"
+      tabindex="0"
+      (click)="passwordField.focus()"
+      (keydown.enter)="passwordField.focus()"
+    >
+      <label for="password">Password</label>
       <div>
         <input
-        id="password"
-        name="password"
-        [type]="typeInput"
-        formControlName="password"
-        #passwordField
+          id="password"
+          name="password"
+          [type]="typeInput"
+          formControlName="password"
+          #passwordField
         />
-        
+
         <button (click)="togglePasswordVisibility()" type="button">
           <img [src]="isPasswordVisible ? hide : see" alt="Voir/Masquer" />
         </button>
@@ -33,6 +59,5 @@
       Save
     </button>
     <a [routerLink]="'/auth/login'">Se connecter</a>
-    
   </form>
 </section>

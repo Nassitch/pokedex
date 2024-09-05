@@ -1,12 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'typeColor'
+  name: 'typeColor',
 })
 export class TypeColorPipe implements PipeTransform {
-
   transform(type: string): string {
-
     let color: string;
 
     switch (type) {
@@ -52,7 +50,5 @@ export class TypeColorPipe implements PipeTransform {
     }
 
     return color;
-
   }
-
 }

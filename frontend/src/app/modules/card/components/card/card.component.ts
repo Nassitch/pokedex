@@ -21,13 +21,13 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     const abilityObservables: Observable<Ability>[] =
       this.pokemon.abilities.map((abilityItem) =>
-        this.cardService.getAbilitiesList$(abilityItem.ability.url)
+        this.cardService.getAbilitiesList$(abilityItem.ability.url),
       );
 
     this.abilityList$ = forkJoin(abilityObservables);
   }
 
   seeDetails(id: number): void {
-    this.router.navigate([`/details/${id}`])
+    this.router.navigate([`/details/${id}`]);
   }
 }
