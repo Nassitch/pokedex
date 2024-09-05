@@ -28,14 +28,14 @@ jobs:
 
       - name: Set up SSH
         run: |
-          mkdir ~/.ssh
+          mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy to Azure
+      - name: Deploy to Azure using SSH
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" --delete frontend/dist/ $SSH_USER@$SSH_HOST:/pokedex/server
+          scp -r -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no frontend/dist/ $SSH_USER@$SSH_HOST:/pokedex/client
