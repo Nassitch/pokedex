@@ -27,4 +27,4 @@ jobs:
         SSH_USER: ${{ secrets.SSH_USER }}
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
       run: |
-        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r frontend/dist/ $SSH_USER@$SSH_HOST:~/pokedex/client
+        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r frontend/dist/ $SSH_USER@$SSH_HOST:~/pokedex_app/client
