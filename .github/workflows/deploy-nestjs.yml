@@ -21,6 +21,14 @@ jobs:
         npm install
         npm run build
 
+    - name: Prepare Deployment Directory
+      env:
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+        SSH_USER: ${{ secrets.SSH_USER }}
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+      run: |
+        sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "mkdir -p ~/pokedex_app/server"
+
     - name: Deploy Backend to VPS
       env:
         SSH_HOST: ${{ secrets.SSH_HOST }}
@@ -40,5 +48,5 @@ jobs:
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo 'JWT_SECRET_KEY=${JWT_SECRET_KEY}' >> ~/pokedex_app/server/.env"
         
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd ~/pokedex_app/server && npm install --omit=dev"
-        
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd ~/pokedex_app/server && npx prisma generate"
+        sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd ~/pokedex_app/server && npx prisma migrate deploy"
