@@ -30,12 +30,15 @@ jobs:
         PASSWORD_DB: ${{ secrets.PASSWORD_DB }}
         JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
       run: |
-        sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "rm -rf ~/pokedex_app/server/dist"
+        sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "rm -rf ~/pokedex_app/server/*"
         
-        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r backend/dist $SSH_USER@$SSH_HOST:~/pokedex_app/server
+        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r backend/dist/* $SSH_USER@$SSH_HOST:~/pokedex_app/server
         sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no backend/package.json backend/package-lock.json $SSH_USER@$SSH_HOST:~/pokedex_app/server
+        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r backend/prisma $SSH_USER@$SSH_HOST:~/pokedex_app/server
         
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo 'DATABASE_URL=\"mysql://${USER_DB}:${PASSWORD_DB}@localhost:3306/pokedex_db\"' > ~/pokedex_app/server/.env"
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo 'JWT_SECRET_KEY=${JWT_SECRET_KEY}' >> ~/pokedex_app/server/.env"
         
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd ~/pokedex_app/server && npm install --omit=dev"
+        
+        sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd ~/pokedex_app/server && npx prisma generate"
