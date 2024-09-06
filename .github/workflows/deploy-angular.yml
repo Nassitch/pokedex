@@ -12,8 +12,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install SSH and sshpass
-        run: sudo apt-get update && sudo apt-get install -y sshpass
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
 
       - name: Build Angular Application
         run: |
@@ -25,16 +25,14 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          echo "$SSH_PRIVATE_KEY" > ssh_key
-          chmod 600 ssh_key
-          eval $(ssh-agent)
-          ssh-add ssh_key
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan ${{ secrets.SSH_O2SWITCH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy Frontend to VPS
         env:
           SSH_O2SWITCH_HOST: ${{ secrets.SSH_O2SWITCH_HOST }}
           SSH_O2SWITCH_USER: ${{ secrets.SSH_O2SWITCH_USER }}
-          SSH_O2SWITCH_PRIVATE_KEY: ${{ secrets.SSH_O2SWITCH_PRIVATE_KEY }}
         run: |
-          sshpass -p "$SSH_O2SWITCH_PRIVATE_KEY" ssh -o StrictHostKeyChecking=no $SSH_O2SWITCH_USER@$SSH_O2SWITCH_HOST "rm -rf ~/pokedex_app/client/*"
-          sshpass -p "$SSH_O2SWITCH_PRIVATE_KEY" scp -o StrictHostKeyChecking=no -r frontend/dist/pokedex/* $SSH_O2SWITCH_USER@$SSH_O2SWITCH_HOST:~/pokedex_app/client/
+          rsync -avz -e "ssh -i ~/.ssh/id_rsa" frontend/dist/pokedex/ $SSH_O2SWITCH_USER@$SSH_O2SWITCH_HOST:~/pokedex_app/client/
