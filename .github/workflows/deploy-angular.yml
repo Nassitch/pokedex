@@ -28,6 +28,8 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          eval $(ssh-agent)
+          ssh-add ~/.ssh/id_rsa
           ssh-keyscan ${{ secrets.SSH_O2SWITCH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy Frontend to VPS
