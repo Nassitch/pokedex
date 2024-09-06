@@ -20,11 +20,10 @@ jobs:
         cd frontend
         npm install
         npm run build
-
     - name: Deploy Frontend to VPS.
       env:
-        SSH_HOST: ${{ secrets.SSH_O2SWITCH_HOST }}
-        SSH_USER: ${{ secrets.SSH_O2SWITCH_USER }}
-        SSH_PASSWORD: ${{ secrets.SSH_O2SWITCH_PASSWORD }}
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+        SSH_USER: ${{ secrets.SSH_USER }}
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
       run: |
-        sshpass -p "$SSH_O2SWITCH_PASSWORD" scp -o StrictHostKeyChecking=no -r frontend/dist/ $SSH_O2SWITCH_USER@$SSH_O2SWITCH_HOST:~/pokedex_app/client
+        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r frontend/dist/ $SSH_USER@$SSH_HOST:~/pokedex_app/client

@@ -1,4 +1,4 @@
-name: Deploy NestJS Application
+name: Deploy NestJS Application.
 
 on:
   push:
@@ -6,26 +6,24 @@ on:
       - main
 
 jobs:
-  deploy-backend:
+  deploy-frontend:
     runs-on: ubuntu-latest
     steps:
-
     - name: Checkout code.
       uses: actions/checkout@v3
 
     - name: Install SSH and expect.
       run: sudo apt-get install -y sshpass expect
 
-    - name: Build Backend Application.
+    - name: Build NestJS Application.
       run: |
         cd backend
         npm install
         npm run build
-
     - name: Deploy Backend to VPS.
       env:
-        SSH_HOST: ${{ secrets.SSH_HOSTINGER_HOST }}
-        SSH_USER: ${{ secrets.SSH_HOSTINGER_USER }}
-        SSH_PASSWORD: ${{ secrets.SSH_HOSTINGER_PASSWORD }}
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+        SSH_USER: ${{ secrets.SSH_USER }}
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
       run: |
-        sshpass -p "$SSH_HOSTINGER_PASSWORD" scp -o StrictHostKeyChecking=no -r backend/dist/ $SSH_HOSTINGER_USER@$SSH_HOSTINGER_HOST:~/pokedex_app/server
+        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r backend/dist/ $SSH_USER@$SSH_HOST:~/pokedex_app/server
