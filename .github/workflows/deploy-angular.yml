@@ -1,4 +1,4 @@
-name: Deploy Angular Application.
+name: Deploy Angular Application
 
 on:
   push:
@@ -9,22 +9,32 @@ jobs:
   deploy-frontend:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code.
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Install SSH and expect.
-      run: sudo apt-get install -y sshpass expect
+      - name: Install SSH and sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
 
-    - name: Build Angular Application.
-      run: |
-        cd frontend
-        npm install
-        npm run build
-    - name: Deploy Frontend to VPS.
-      env:
-        SSH_HOST: ${{ secrets.SSH_HOST }}
-        SSH_USER: ${{ secrets.SSH_USER }}
-        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-      run: |
-        sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "rm -rf ~/pokedex_app/client/*"
-        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r frontend/dist/pokedex/* $SSH_USER@$SSH_HOST:~/pokedex_app/client/
+      - name: Build Angular Application
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          echo "$SSH_PRIVATE_KEY" > ssh_key
+          chmod 600 ssh_key
+          eval $(ssh-agent)
+          ssh-add ssh_key
+
+      - name: Deploy Frontend to VPS
+        env:
+          SSH_O2SWITCH_HOST: ${{ secrets.SSH_O2SWITCH_HOST }}
+          SSH_O2SWITCH_USER: ${{ secrets.SSH_O2SWITCH_USER }}
+          SSH_O2SWITCH_PRIVATE_KEY: ${{ secrets.SSH_O2SWITCH_PRIVATE_KEY }}
+        run: |
+          sshpass -p "$SSH_O2SWITCH_PRIVATE_KEY" ssh -o StrictHostKeyChecking=no $SSH_O2SWITCH_USER@$SSH_O2SWITCH_HOST "rm -rf ~/pokedex_app/client/*"
+          sshpass -p "$SSH_O2SWITCH_PRIVATE_KEY" scp -o StrictHostKeyChecking=no -r frontend/dist/pokedex/* $SSH_O2SWITCH_USER@$SSH_O2SWITCH_HOST:~/pokedex_app/client/
