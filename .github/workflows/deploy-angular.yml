@@ -1,30 +1,35 @@
-name: Deploy Angular Application
+name: Deploy Angular Application via FTP
 
 on:
   push:
     branches:
-      - main
+      - main  # Déclenchement lors d'un push sur la branche 'main'
 
 jobs:
-  deploy-frontend:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code.
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies.
-        run: sudo apt-get update && sudo apt-get install -y openssh-client
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-      - name: Build Application.
-        run: |
-          cd frontend
-          npm install
-          npm run build
-          echo "${{ secrets.SSH_HOSTINGER_USER }}"
+      - name: Install dependencies
+        run: npm install
 
-      - name: Publish.
-        run: |
-          echo -e "${{ secrets.DEPLOY_KEY }}" >__TEMP_INPUT_KEY_FILE
-          chmod 600 __TEMP_INPUT_KEY_FILE
-          ssh -o StrictHostKeyChecking=no -i __TEMP_INPUT_KEY_FILE "${{ secrets.SSH_HOSTINGER_USER }}"@"${{ secrets.SSH_HOSTINGER_HOST }}" rm -rf /pokedex_app/
-          rm __TEMP_INPUT_KEY_FILE
+      - name: Build Angular app
+        run: npm run build -- --prod
+
+      - name: Deploy to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/my-angular-app
+          server-dir: /home/toya4249/listing.toya4249.odns.fr/listing
+          protocol: ftps
