@@ -23,7 +23,7 @@ jobs:
 
       - name: Publish.
         env:
-          SSH_O2SWITCH_PRIVATE_KEY: "${{ secrets.SSH_O2SWITCH_PRIVATE_KEY }}"
+          SSH_O2SWITCH_PRIVATE_KEY: ${{ secrets.SSH_O2SWITCH_PRIVATE_KEY }}
         run: |
           echo -e ${{ SSH_O2SWITCH_PRIVATE_KEY }} >__TEMP_INPUT_KEY_FILE
           chmod 600 __TEMP_INPUT_KEY_FILE
