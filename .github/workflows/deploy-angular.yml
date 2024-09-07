@@ -28,6 +28,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/my-angular-app/
+          local-dir: /dist/my-angular-app/
           server-dir: /home/toya4249/listing.toya4249.odns.fr/listing/
           protocol: ftps
