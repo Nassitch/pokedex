@@ -31,7 +31,7 @@ jobs:
       - name: Deploy to FTP server
         run: |
           cd frontend/dist
-          curl -T * ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER/home/toya4249/3a1d.com/pokedex_app/client.toya4249.odns.fr/
+          curl -T * ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER/home/toya4249/3a1d.com/pokedex_app/client.toya4249.odns.fr/ --ftp-create-dirs
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
