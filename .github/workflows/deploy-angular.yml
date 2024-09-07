@@ -25,7 +25,7 @@ jobs:
         run: |
           echo -e "${{ secrets.SSH_O2SWITCH_PRIVATE_KEY }}" >__TEMP_INPUT_KEY_FILE
           chmod 600 __TEMP_INPUT_KEY_FILE
-          ssh -o StrictHostKeyChecking=no -i __TEMP_INPUT_KEY_FILE -p "${{ secrets.SSH.PORT }}" "${{ secrets.SSH_HOSTINGER_USER }}"@"${{ secrets.SSH_HOSTINGER_HOST }}" "sudo rm -rf /pokedex_app/"
+          ssh -o StrictHostKeyChecking=no -i __TEMP_INPUT_KEY_FILE -p "${{ secrets.SSH.PORT }}" "${{ secrets.SSH_HOSTINGER_USER }}"@"${{ secrets.SSH_HOSTINGER_HOST }}" rm -rf /pokedex_app/
           ssh -o StrictHostKeyChecking=no -v -i __TEMP_INPUT_KEY_FILE -P "${{ secrets.SSH_PORT }}" -r dist "${{ secrets.SSH_HOSTINGER_USER }}"@"${{ secrets.SSH_HOSTINGER_HOST }}":"/pokdex_app/client/."
           ssh -o StrictHostKeyChecking=no -v -i __TEMP_INPUT_KEY_FILE -P "${{ secrets.SSH_PORT }}" -r package.json "${{ secrets.SSH_HOSTINGER_USER }}"@"${{ secrets.SSH_HOSTINGER_HOST }}":"pokdedex_app/client/dist"
           rm __TEMP_INPUT_KEY_FILE
