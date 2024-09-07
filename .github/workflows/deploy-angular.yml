@@ -1,4 +1,4 @@
-name: Deploy Angular Application with FTP
+name: Deploy Angular Application via FTP
 
 on:
   push:
@@ -29,10 +29,10 @@ jobs:
           npm run build
 
       - name: Deploy to FTP server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: frontend/dist/
-          protocol: ftps
+        run: |
+          cd frontend/dist
+          curl -T * ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER/home/toya4249/3a1d.com/pokedex_app/client.toya4249.odns.fr/
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
