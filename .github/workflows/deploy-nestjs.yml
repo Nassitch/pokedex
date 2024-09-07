@@ -1,0 +1,52 @@
+name: Deploy NestJS Application with SSH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install SSH and expect
+        run: sudo apt-get install -y sshpass expect
+
+      - name: Build NestJS Application
+        run: |
+          cd backend
+          npm install
+          npm run build
+
+      - name: Prepare Deployment Directory
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        run: |
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "mkdir -p ~/pokedex_app/server"
+
+      - name: Deploy Backend to VPS
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          USER_DB: ${{ secrets.USER_DB }}
+          PASSWORD_DB: ${{ secrets.PASSWORD_DB }}
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+        run: |
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "rm -rf ~/pokedex_app/server/*"
+
+          sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r backend/dist/ $SSH_USER@$SSH_HOST:~/pokedex_app/server
+          sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no backend/package.json backend/package-lock.json $SSH_USER@$SSH_HOST:~/pokedex_app/server
+          sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r backend/prisma $SSH_USER@$SSH_HOST:~/pokedex_app/server
+
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo 'DATABASE_URL=\"mysql://${USER_DB}:${PASSWORD_DB}@localhost:3306/pokedex_db\"' > ~/pokedex_app/server/.env"
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo 'JWT_SECRET_KEY=${JWT_SECRET_KEY}' >> ~/pokedex_app/server/.env"
+
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd ~/pokedex_app/server && npm install --omit=dev"
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd ~/pokedex_app/server && npx prisma generate"
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd ~/pokedex_app/server && npx prisma migrate deploy"
