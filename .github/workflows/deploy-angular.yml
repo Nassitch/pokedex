@@ -1,4 +1,4 @@
-name: Deploy Angular Application with FTP
+name: Deploy Angular Application via FTP
 
 on:
   push:
@@ -22,17 +22,15 @@ jobs:
         run: |
           cd frontend
           npm install
-
       - name: Build Angular Application
         run: |
           cd frontend
           npm run build
-
       - name: Deploy to FTP server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: frontend/dist/
+          local-dir: frontend/dist/pokedex/
           protocol: ftps
