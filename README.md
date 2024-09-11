@@ -98,9 +98,9 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 #### David:
-* [![GitHub](https://img.shields.io/badge/😺-GitHub-1fa2ff?style=flat)](https://github.com/davidduranty)
-* [![LinkedIn](https://img.shields.io/badge/📠-LinkedIn-1fa2ff?style=flat)](https://www.linkedin.com/in/david-duranty/)
+* [![GitHub](https://img.shields.io/badge/😺-GitHub-000000?style=flat)](https://github.com/davidduranty)
+* [![LinkedIn](https://img.shields.io/badge/📠-LinkedIn-000000?style=flat)](https://www.linkedin.com/in/david-duranty/)
 
 #### Nassime:
-* [![GitHub](https://img.shields.io/badge/😺-GitHub-1fa2ff?style=flat)](https://github.com/Nassitch)
-* [![LinkedIn](https://img.shields.io/badge/📠-LinkedIn-1fa2ff?style=flat)](https://www.linkedin.com/in/nassime-harmach/)
+* [![GitHub](https://img.shields.io/badge/😺-GitHub-000000?style=flat)](https://github.com/Nassitch)
+* [![LinkedIn](https://img.shields.io/badge/📠-LinkedIn-000000?style=flat)](https://www.linkedin.com/in/nassime-harmach/)

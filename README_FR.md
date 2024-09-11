@@ -97,12 +97,11 @@ Cette application permet de consulter ou rechercher les Pokémon existants. Elle
 ## License.
 Ce projet est sous lisence [MIT](LICENSE).
 
-## Contact.
+## Contact
 #### David:
-[![GitHub](https://img.shields.io/badge/😺-GitHub-1fa2ff?style=float)](https://github.com/davidduranty)
-[![LinkedIn](https://img.shields.io/badge/📠-LinkedIn-1fa2ff?style=float)](https://www.linkedin.com/in/david-duranty/)
-* [GitHub](https://github.com/davidduranty)
-* [LinkedIn](https://www.linkedin.com/in/david-duranty/)
+* [![GitHub](https://img.shields.io/badge/😺-GitHub-000000?style=flat)](https://github.com/davidduranty)
+* [![LinkedIn](https://img.shields.io/badge/📠-LinkedIn-000000?style=flat)](https://www.linkedin.com/in/david-duranty/)
+
 #### Nassime:
-* [GitHub](https://github.com/Nassitch)
-* [LinkedIn](https://www.linkedin.com/in/nassime-harmach/)
+* [![GitHub](https://img.shields.io/badge/😺-GitHub-000000?style=flat)](https://github.com/Nassitch)
+* [![LinkedIn](https://img.shields.io/badge/📠-LinkedIn-000000?style=flat)](https://www.linkedin.com/in/nassime-harmach/)
