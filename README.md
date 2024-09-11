@@ -1,4 +1,4 @@
-<a href="https://github.com/Nassitch/Nassitch/blob/main/README_FR.md">🇫🇷</a>
+<a href="https://github.com/Nassitch/pokedex/blob/main/README_FR.md">🇫🇷</a>
 
 <div align="center">
   <h1 align="center">
