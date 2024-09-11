@@ -10,7 +10,7 @@
     <br />
     <br />
     <a href="https://pokedex.3a1d.com/">
-      <img src="/frontend/src/assets/logos/pokeball.png" alt="Logo">
+      <img src="/frontend/src/assets/logos/pokeball.png" alt="Logo" width="150">
     </a>
 </div>
 
@@ -84,14 +84,10 @@ This application allows users to browse or search for existing Pokémon. It offe
 
 ## Sources
 
-<h3 style="width: 80px">
-<img src="https://pokeapi.co/static/pokeapi_256.3fa72200.png" alt="PokeAPI" />
-</h3>
+<img src="https://pokeapi.co/static/pokeapi_256.3fa72200.png" alt="PokeAPI"  width="80" />
 <p>Thanks to <a href="https://pokeapi.co/">PokeAPI</a> for providing up-to-date information on all Pokémon.</p>
 
-<h3 style="width: 80px">
-<img src="https://www.svgrepo.com/logo.svg" alt="SVGRepo" />
-</h3>
+<img src="https://www.svgrepo.com/logo.svg" alt="SVGRepo"  width="80" />
 <p>Thanks to <a href="https://www.svgrepo.com/">SVGRepo</a> and the collection <a href="https://www.svgrepo.com/collection/iconsax-line-oval-icons/">Iconsax Line Oval Icons</a> for providing beautiful icons.</p>
 
 ## Contributors

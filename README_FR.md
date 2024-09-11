@@ -10,7 +10,7 @@
     <br />
     <br />
     <a href="https://pokedex.3a1d.com/">
-      <img src="/frontend/src/assets/logos/pokeball.png" alt="Logo">
+      <img src="/frontend/src/assets/logos/pokeball.png" alt="Logo" width="150">
     </a>
 </div>
 
@@ -84,14 +84,10 @@ Cette application permet de consulter ou rechercher les Pokémon existants. Elle
 
 ## Sources.
 
-<h3 style="width: 80px">
-<img src="https://pokeapi.co/static/pokeapi_256.3fa72200.png" alt="PokeAPI" />
-</h3>
+<img src="https://pokeapi.co/static/pokeapi_256.3fa72200.png" alt="PokeAPI" width="80" />
 <p>Merci à <a href="https://pokeapi.co/">PokeAPI</a> pour fournir des informations à jour sur tous les Pokémon.</p>
 
-<h3 style="width: 80px">
-<img src="https://www.svgrepo.com/logo.svg" alt="SVGRepo" />
-</h3>
+<img src="https://www.svgrepo.com/logo.svg" alt="SVGRepo" width="80" />
 <p>Merci à <a href="https://www.svgrepo.com/">SVGRepo</a> et à la collection <a href="https://www.svgrepo.com/collection/iconsax-line-oval-icons/">Iconsax Line Oval Icons</a> pour fournir de belles icônes.</p>
 
 
