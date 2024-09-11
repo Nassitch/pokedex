@@ -73,7 +73,7 @@ This application allows users to browse or search for existing Pokémon. It offe
 [![My Skills](https://skillicons.dev/icons?i=figma,postman,vscode,git,github,githubactions)](https://skillicons.dev)
 
 ### Deployments
-[![My Skills](https://skillicons.dev/icons?i=nginx,apache)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=linux,ubuntu,nginx,apache)](https://skillicons.dev)
 <details>
 <summary>Versions</summary>
 <ul>

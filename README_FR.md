@@ -73,7 +73,7 @@ Cette application permet de consulter ou rechercher les Pokémon existants. Elle
 [![My Skills](https://skillicons.dev/icons?i=figma,postman,vscode,git,github,githubactions)](https://skillicons.dev)
 
 ### Deployments.
-[![My Skills](https://skillicons.dev/icons?i=nginx,apache)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=linux,ubuntu,nginx,apache)](https://skillicons.dev)
 <details>
 <summary>versions.</summary>
 <ul>
