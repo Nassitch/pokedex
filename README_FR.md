@@ -53,7 +53,7 @@ Cette application permet de consulter ou rechercher les Pokémon existants. Elle
 <li>CSS v.3</li>
 <li>JavaScript v ES2022</li>
 <li>TypeScript v.5.1</li>
-<li>HTML v.16</li>
+<li>Angular CSR v.16</li>
 </ul>
 </details>
 

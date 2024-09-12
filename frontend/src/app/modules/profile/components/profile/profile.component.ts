@@ -6,6 +6,7 @@ import { ProfileService } from '../../shared/services/profile.service';
 import { Profile } from '../../models/profile.type';
 import { AuthService } from 'src/app/modules/auth/shared/services/auth.service';
 import { Router } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,9 @@ export class ProfileComponent implements OnInit {
     private readonly profileService: ProfileService,
     private readonly authService: AuthService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private title: Title,
+    private meta: Meta
   ) {}
 
   isPasswordVisible = false;
@@ -45,15 +48,20 @@ export class ProfileComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.title.setTitle(`Your profile`);
+    this.meta.updateTag({ name: 'description', content: 'View, edit or delete all your profile data.' });
+    this.meta.updateTag({ name: 'keywords', content: 'View, edit, delete, profile, data' });
+    
     this.getSubscription$ = this.profileService
-      .getProfile$()
-      .pipe(
-        tap((profile: Profile) => {
-          this.Form.patchValue({
-            name: profile.name,
-            email: profile.email,
-          });
-        })
+    .getProfile$()
+    .pipe(
+      tap((profile: Profile) => {
+        this.Form.patchValue({
+          name: profile.name,
+          email: profile.email,
+        });
+        this.title.setTitle(`Your profile (${profile.name})`);
+      })
       )
       .subscribe();
   }

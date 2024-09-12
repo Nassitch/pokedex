@@ -53,7 +53,7 @@ This application allows users to browse or search for existing Pokémon. It offe
 <li>CSS v3</li>
 <li>JavaScript ES2022</li>
 <li>TypeScript v5.1</li>
-<li>Angular v16</li>
+<li>Angular CSR v16</li>
 </ul>
 </details>
 

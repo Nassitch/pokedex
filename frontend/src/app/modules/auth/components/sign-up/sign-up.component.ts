@@ -1,22 +1,25 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { RegisterType } from '../../models/register.type';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/modules/toast/shared/services/toast.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
-export class SignUpComponent implements OnDestroy {
+export class SignUpComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private title: Title,
+    private meta: Meta
   ) {}
 
   isPasswordVisible = false;
@@ -37,6 +40,12 @@ export class SignUpComponent implements OnDestroy {
     ],
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
+
+  ngOnInit(): void {
+    this.title.setTitle('Sign up - Pokedex');
+    this.meta.updateTag({ name: 'description', content: 'Sign up and access profile or favorites.' });
+    this.meta.updateTag({ name: 'keywords', content: 'sign, signup, sign up, register' });
+  }
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
