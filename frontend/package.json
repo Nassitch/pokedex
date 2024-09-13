@@ -1,15 +1,16 @@
 {
-  "name": "pokedex",
-  "version": "0.0.0",
+  "name": "pokedex_frontend",
+  "version": "0.0.1",
+  "author": "David & Nassime",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
     "lint": "ng lint"
   },
-  "private": true,
+  "private": false,
+  "license": "MIT",
   "dependencies": {
     "@angular/animations": "^16.2.0",
     "@angular/common": "^16.2.0",
