@@ -16,7 +16,7 @@ jobs:
         run: docker build -t nest_img:${{ github.sha }} .
 
       - name: Save Docker image to file.
-        run: docker save -o nest_img.tar nest_app:${{ github.sha }}
+        run: docker save -o nest_img.tar nest_img:${{ github.sha }}
 
       - name: Transfer Docker image and compose to VPS.
         run: |
