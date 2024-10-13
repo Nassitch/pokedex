@@ -14,7 +14,7 @@
     </a>
 </div>
 
-<a href="https://pokede.3a1d.com/">⎋ Consulter</a>
+<a href="https://pokedex.3a1d.com/">⎋ Consulter</a>
 
 <details>
 <summary>Contents.</summary>
@@ -23,8 +23,8 @@
 <a href="#about">About.</a>
 <ul>
 <li><a href="#usage">Usage.</a></li>
-</li>
 </ul>
+</li>
 <li><a href="#built-with">Build With</a></li>
 <ul>
 <li><a href="#stacks">Stacks.</a></li>
