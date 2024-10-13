@@ -27,7 +27,6 @@ services:
     image: nest_img
     container_name: nest_app
     build:
-      context: .
       dockerfile: ./Dockerfile
     depends_on:
       mysql:
