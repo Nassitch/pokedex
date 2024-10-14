@@ -13,10 +13,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image.
-        run: docker build -t nest_img .
+        run: docker build -t nest_img:latest .
 
       - name: Save Docker image to file.
-        run: docker save -o nest_img.tar nest_img
+        run: docker save -o nest_img.tar nest_img:latest
 
       - name: Transfer Docker image and compose to VPS.
         run: |
@@ -33,7 +33,7 @@ jobs:
           script: |
             set -e
             cd ~/pokedex_app/server/
-            docker load -i nest_app.tar
+            docker load -i nest_img.tar
             docker-compose down
             docker-compose up -d
             docker system prune -f

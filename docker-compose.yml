@@ -25,7 +25,7 @@ services:
 
   nest:
     image: nest_img
-    container_name: nest_app
+    container_name: nest_app:latest
     build:
       dockerfile: ./Dockerfile
     depends_on:
