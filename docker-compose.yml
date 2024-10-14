@@ -1,5 +1,5 @@
 services:
-  mysql:
+  mysql_pokedex:
     image: mysql:8.0
     container_name: pokedex_db
     env_file:
@@ -23,13 +23,13 @@ services:
     networks:
       - pokedex_network
 
-  nest:
+  nest_pokedex:
     image: pokedex_img:latest
     container_name: pokedex_app
     build:
       dockerfile: ./Dockerfile
     depends_on:
-      mysql:
+      mysql_pokedex:
         condition: service_healthy
     env_file:
       - .env
