@@ -1,18 +1,18 @@
 services:
   mysql:
     image: mysql:8.0
-    container_name: mysql_db
+    container_name: pokedex_db
     env_file:
       - .env
     ports:
-      - "3308:3308"
+      - "3308:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - db_data:/var/lib/mysql
+      - pokedex_db_data:/var/lib/mysql
       - ./database-setup.sh:/docker-entrypoint-initdb.d/setup.sh
     restart: always
     healthcheck:
@@ -24,8 +24,8 @@ services:
       - pokedex_network
 
   nest:
-    image: nest_img:latest
-    container_name: nest_app
+    image: pokedex_img:latest
+    container_name: pokedex_app
     build:
       dockerfile: ./Dockerfile
     depends_on:
@@ -43,7 +43,7 @@ services:
       - pokedex_network
 
 volumes:
-  db_data: {}
+  pokedex_db_data: {}
 networks:
   pokedex_network:
     driver: bridge
