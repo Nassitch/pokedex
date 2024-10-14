@@ -13,14 +13,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image.
-        run: docker build -t nest_img:latest .
+        run: docker build -t pokedex_img:latest .
 
       - name: Save Docker image to file.
-        run: docker save -o nest_img.tar nest_img:latest
+        run: docker save -o pokedex_img.tar pokedex_img:latest
 
       - name: Transfer Docker image and compose to VPS.
         run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -o StrictHostKeyChecking=no nest_img.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/pokedex_app/server/
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -o StrictHostKeyChecking=no pokedex_img.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/pokedex_app/server/
           sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/pokedex_app/server/
 
       - name: SSH to VPS and load Docker images.
@@ -33,7 +33,7 @@ jobs:
           script: |
             set -e
             cd ~/pokedex_app/server/
-            docker load -i nest_img.tar
+            docker load -i pokedex_img.tar
             docker-compose down
             docker-compose up -d
             docker system prune -f
