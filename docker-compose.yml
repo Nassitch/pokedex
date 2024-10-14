@@ -24,8 +24,8 @@ services:
       - pokedex_network
 
   nest:
-    image: nest_img
-    container_name: nest_app:latest
+    image: nest_img:latest
+    container_name: nest_app
     build:
       dockerfile: ./Dockerfile
     depends_on:
