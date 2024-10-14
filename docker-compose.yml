@@ -26,6 +26,8 @@ services:
   nest:
     image: nest_img
     container_name: nest_app
+    build:
+      dockerfile: ./Dockerfile
     depends_on:
       mysql:
         condition: service_healthy
